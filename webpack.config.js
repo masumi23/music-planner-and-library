@@ -2,6 +2,7 @@ var path = require('path');
 var node_modules = path.resolve(__dirname, 'node_modules');
 var pathToReact = path.resolve(node_modules, 'react/dist/react.min.js');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var HtmlWebpackPlugin = require("html-webpack-plugin");
 
 config = {
   entry: ['webpack/hot/dev-server', path.resolve(__dirname, 'app/main.js')],
@@ -26,7 +27,12 @@ config = {
     noParse: [pathToReact]
   },
   plugins: [
-    new ExtractTextPlugin("styles.css")
+    new ExtractTextPlugin("styles.css"),
+    new HtmlWebpackPlugin({
+      title: 'Custom template',
+      template: 'index.html', // Load a custom template
+      inject: 'body' // Inject all scripts into the body
+    })
   ]
 };
 
