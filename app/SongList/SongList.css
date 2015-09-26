@@ -1,0 +1,8 @@
+.heading {
+  color: #0CD;
+}
+
+.list {
+	height: 400px;
+	overflow: scroll;
+}
