@@ -64,7 +64,7 @@ export default class Song extends React.Component {
 
 	  function makeContentEditableChunks(keys) {
 	  	let chunks = keys.map((key) => (
-	  		<div>
+	  		<div className={currentSong[key] || self.state.editMode ? '': 'hidden'}>
 	  			<h4>{key}</h4>
 		  		{makeContentEditable(key)}
 				</div>
@@ -87,41 +87,49 @@ export default class Song extends React.Component {
 					<button onClick={this.cancelEdit.bind(this)}>Cancel</button>
 				</div>
 
-				<h2>Most Important</h2>
-				{makeContentEditableChunks([
-					'toneSet',
-					'materials',
-					'title',
-					'url',
-					'goal',
-					'notes'
-				])}
+				<div className="row">
+					<div className="col-sm-4">
+						<h2>Most Important</h2>
+						{makeContentEditableChunks([
+							'toneSet',
+							'materials',
+							'title',
+							'url',
+							'goal',
+							'notes'
+						])}
+					</div>
 
-				<h2>Analysis Properties</h2>
-				{makeContentEditableChunks([
-					'gradeFloor',
-					'gradeCeil',
-					'toneSet',
-					'range',
-					'startingPitch',
-					'scale',
-					'formAnalysis',
-					'rhythmSet',
-					'tonalCenter',
-					'formType'
-				])}
+					<div className="col-sm-4">
+						<h2>Analysis Properties</h2>
+						{makeContentEditableChunks([
+							'gradeFloor',
+							'gradeCeil',
+							'toneSet',
+							'range',
+							'startingPitch',
+							'scale',
+							'formAnalysis',
+							'rhythmSet',
+							'tonalCenter',
+							'formType'
+						])}
+					</div>
 
-				<h2>Other Properties</h2>
-				{makeContentEditableChunks([
-					'informantPerformer',
-					'origin',
-					'region',
-					'songTypes',
-					'source',
-					'state',
-					'subSubject',
-					'subjects'
-				])}
+					<div className="col-sm-4">
+						<h2>Other Properties</h2>
+						{makeContentEditableChunks([
+							'informantPerformer',
+							'origin',
+							'region',
+							'songTypes',
+							'source',
+							'state',
+							'subSubject',
+							'subjects'
+						])}
+					</div>
+				</div>
 			</div>
 		);
   }
