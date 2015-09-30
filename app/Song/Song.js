@@ -1,3 +1,5 @@
+import styles from './Song.css';
+
 import React from 'react';
 import ContentEditable from '../ContentEditable/ContentEditable.js';
 
@@ -74,7 +76,7 @@ export default class Song extends React.Component {
 	  }
 
 		return (
-			<div className="col-sm-8">
+			<div className={styles.song}>
 				<h1 className="heading">
 					{makeContentEditable('title')}
 				</h1>
