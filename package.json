@@ -1,5 +1,5 @@
 {
-  "name": "playground",
+  "name": "music-planner-and-library",
   "version": "1.0.0",
   "description": "",
   "main": "bundle.js",
@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.5",
+    "extract-text-webpack-plugin": "^0.8.2",
     "firebase": "^2.2.9",
     "lodash": "^3.10.1",
     "re-base": "^1.1.2",

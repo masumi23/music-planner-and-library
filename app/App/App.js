@@ -25,9 +25,6 @@ export default class App extends React.Component {
       state: 'items',
       asArray: true
     });
-    window.s = this;
-    // window.fb = new Firebase('https://songdatabase.firebaseio.com/songList');
-    // window.base = this.base;
   }
 
   componentWillUnmount(){
@@ -46,12 +43,25 @@ export default class App extends React.Component {
     console.log(currentSong);
   }
 
+  updateCurrentSong(updatedSong) {
+    console.log('updateCurrentSong called with ', updatedSong);
+    this.setState({currentSong: updatedSong});
+
+    // I'm only calling this because otherwise, rebase won't sync the changes
+    // to the currentSong
+    this.setState({items: this.state.items});
+  }
+
   render() {
 
     return (
       <div>
         <SongList items={this.state.items}/>
-        <Song currentSong={this.state.currentSong}/>
+
+        <Song
+          currentSong={this.state.currentSong}
+          updateSong={this.updateCurrentSong.bind(this)}/>
+
       </div>
     );
   }

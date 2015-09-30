@@ -1,9 +1,53 @@
 import React from 'react';
+import ContentEditable from '../ContentEditable/ContentEditable.js';
 
 export default class Song extends React.Component {
 
+  constructor(props) {
+    super(props);
+    console.log('constructor');
+    this.state = {
+    	editMode: false,
+      currentSong: null
+    };
+  }
+
+  componentWillReceiveProps(newProps) {
+  	let currentSong = newProps.currentSong;
+  	console.log('propsChanged');
+  	console.log(newProps);
+  	this.setState({currentSong: currentSong});
+  }
+
+  toggleEditMode() {
+  	this.setState({editMode: !this.state.editMode});
+  }
+
+  cancelEdit() {
+  	this.setState({currentSong: this.props.currentSong});
+  	console.log(this.props.currentSong.title);
+  	this.toggleEditMode();
+  }
+
+  saveSongData() {
+  	console.log('Saving song data!');
+  	console.log(this.state.currentSong);
+  	this.props.updateSong(this.state.currentSong);
+  	this.toggleEditMode();
+  	// this.setState({editMode: !this.state.editMode});
+  }
+
+  handleChange(e) {
+  	console.log('a change is coming!', e.target);
+  	let currSong = this.state.currentSong;
+  	currSong[e.target.key] = e.target.value;
+  	this.setState({currentSong: currSong});
+  }
+
   render() {
-	  let currentSong = this.props.currentSong;
+	  let currentSong = this.state.currentSong;
+	  console.log('render');
+	  console.log(this.state, this.props);
 
 	  if (!currentSong) {
 	  	return null;
@@ -13,15 +57,58 @@ export default class Song extends React.Component {
 		return (
 			<div className="col-sm-8">
 				<h1 className="heading">
-					{currentSong.title}
+					<ContentEditable
+						contentEditable={this.state.editMode}
+						html={this.state.currentSong.title}
+						keyName={'title'}
+						onChange={this.handleChange.bind(this)} />
 				</h1>
+
+				<div className={this.state.editMode ? 'hidden' : ''}>
+					<button onClick={this.toggleEditMode.bind(this)}>{this.state.editMode ? 'Editing' : 'Click to Edit'}</button>
+				</div>
+				<div className={this.state.editMode ? '' : 'hidden'}>
+					<button onClick={this.saveSongData.bind(this)}>Save Data</button>
+					<button onClick={this.cancelEdit.bind(this)}>Cancel</button>
+				</div>
+
 				<h2>Most Important</h2>
-				<div>toneSet: <span>{currentSong.toneSet}</span></div>
-				<div>materials: <span>{currentSong.materials}</span></div>
-				<div>title: <span>{currentSong.title}</span></div>
-				<div>url: <span>{currentSong.url}</span></div>
-				<div>goal: <span>{currentSong.goal}</span></div>
-				<div>notes: <span>{currentSong.notes}</span></div>
+				<div>toneSet: </div>
+				<ContentEditable
+					contentEditable={this.state.editMode}
+					html={this.state.currentSong['toneSet']}
+					onChange={this.handleChange} />
+
+				<div>materials: </div>
+				<ContentEditable
+					contentEditable={this.state.editMode}
+					html={this.state.currentSong['materials']}
+					onChange={this.handleChange} />
+
+				<div>title: </div>
+				<ContentEditable
+					contentEditable={this.state.editMode}
+					html={this.state.currentSong['title']}
+					onChange={this.handleChange} />
+
+				<div>url: </div>
+				<ContentEditable
+					contentEditable={this.state.editMode}
+					html={this.state.currentSong['url']}
+					onChange={this.handleChange} />
+
+				<div>goal: </div>
+				<ContentEditable
+					contentEditable={this.state.editMode}
+					html={this.state.currentSong['goal']}
+					onChange={this.handleChange} />
+
+				<div>notes: </div>
+				<ContentEditable
+					contentEditable={this.state.editMode}
+					html={this.state.currentSong['notes']}
+					onChange={this.handleChange} />
+
 
 				<h2>Analysis Properties</h2>
 				<div>gradeFloor: <span>{currentSong.gradeFloor}</span></div>
