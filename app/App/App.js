@@ -32,24 +32,28 @@ export default class App extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    let currentSongID = newProps.params.songId;
+    let currentSongID = newProps.params.songID;
     let currentSong = _.find(this.state.items, function(song){
         return (song.id+'') === currentSongID;
       }.bind(this));
 
     this.setState({
+      currentSongID,
       currentSong
     });
-    console.log(currentSong);
   }
 
   updateCurrentSong(updatedSong) {
-    console.log('updateCurrentSong called with ', updatedSong);
     this.setState({currentSong: updatedSong});
 
-    // I'm only calling this because otherwise, rebase won't sync the changes
-    // to the currentSong
-    this.setState({items: this.state.items});
+    // clone list and update current song in list
+    let i = _.findIndex(this.state.items, this.state.currentSong);
+    let diff = {};
+    diff[i] = {$merge: updatedSong};
+
+    let newList = React.addons.update(this.state.items, diff);
+
+    this.setState({items: newList});
   }
 
   render() {

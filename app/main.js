@@ -9,7 +9,7 @@ function main() {
   React.render((
 	  <Router>
 	    <Route path="/" component={App}>
-	      <Route path="/song/:songId" component={App}/>
+	      <Route path="/song/:songID" component={App}/>
 	    </Route>
 	  </Router>
 	), document.getElementById('app'));
