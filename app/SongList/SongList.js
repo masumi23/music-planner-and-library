@@ -5,6 +5,11 @@ import {Link} from 'react-router';
 //"import" is thanks to "webpack"
 
 export default class SongList extends React.Component {
+
+  addSong() {
+
+  }
+
   render() {
     var createItem = function(song, index) {
       return (
@@ -14,7 +19,14 @@ export default class SongList extends React.Component {
       );
     };
     // console.log(this.props.items);
-    return <ul className={'col-xs-4 ' + styles.list}>{this.props.items.map(createItem)}</ul>
+    return (
+      <div>
+        <ul className={'col-xs-4 ' + styles.list}>
+          <li><button onClick={this.props.addSong}>New Song</button></li>
+          {this.props.items.map(createItem)}
+        </ul>
+      </div>
+    );
     // return <h1 className={styles.heading}>I am a songlist!</h1>;
   }
 }

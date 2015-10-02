@@ -51,16 +51,33 @@ export default class App extends React.Component {
     let diff = {};
     diff[i] = {$merge: updatedSong};
 
+    console.log("update song " + this.state.items[i].title);
     let newList = React.addons.update(this.state.items, diff);
 
     this.setState({items: newList});
   }
 
-  render() {
+  addSong() {
+    // console.log(this.props.items[1].title);
+    console.log(this);
+    let newList = React.addons.update(this.state.items, {
+      $push: [{
+        title: 'Hi!',
+        id: this.state.items.length
+      }]
+    });
+    this.setState({items: newList});
+    this.setState({currentSong: this.state.items[this.state.items.length - 1]});
+  }
 
+  render() {
+    console.log("Ap render with a state of ");
+    console.log(this.state);
     return (
       <div>
-        <SongList items={this.state.items}/>
+        <SongList
+          items={this.state.items}
+          addSong={this.addSong.bind(this)}/>
 
         <Song
           currentSong={this.state.currentSong}
