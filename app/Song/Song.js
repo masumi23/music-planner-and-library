@@ -2,6 +2,7 @@ import styles from './Song.css';
 
 import React from 'react';
 import ContentEditable from '../ContentEditable/ContentEditable.js';
+import CopyToClipboard from 'react-copy-to-clipboard';
 
 export default class Song extends React.Component {
 
@@ -9,7 +10,9 @@ export default class Song extends React.Component {
     super(props);
     this.state = {
     	editMode: false,
-      currentSong: null
+      currentSong: null,
+      copyValue: "testcopy",
+      copied: false
     };
   }
 
@@ -33,6 +36,11 @@ export default class Song extends React.Component {
   	this.props.updateSong(this.state.currentSong);
   	this.toggleEditMode();
   	// this.setState({editMode: !this.state.editMode});
+  }
+
+  copy() {
+  	console.log('copycat');
+  	let desiredData = "hi";
   }
 
   handleChange(e) {
@@ -92,33 +100,51 @@ export default class Song extends React.Component {
 				<div className="row">
 					<div className="col-sm-4">
 						<h2>Most Important</h2>
+						<CopyToClipboard text={this.state.copyValue} onCopy={() =>
+							this.setState({copied: true})}>
+							<button>copy to clipboard</button>
+						</CopyToClipboard>
 						{makeContentEditableChunks([
+							'songKey',
 							'toneSet',
 							'materials',
 							'title',
 							'url',
 							'goal',
-							'notes'
+							'procedure'
 						])}
 					</div>
 
 					<div className="col-sm-4">
 						<h2>Analysis Properties</h2>
 						{makeContentEditableChunks([
-							'gradeFloor',
-							'gradeCeil',
 							'toneSet',
-							'range',
-							'startingPitch',
 							'scale',
-							'formAnalysis',
 							'rhythmSet',
+							'formAnalysis',
+							'startingPitch',
+							'songKey',
+							'gradeFloor',
+							'range',
+							'gradeCeil',
 							'tonalCenter',
 							'formType'
 						])}
 					</div>
 
 					<div className="col-sm-4">
+						<h2>In these lists:</h2>
+						{makeContentEditableChunks([
+							'pentatonic',
+							'taTiti',
+							'soMi',
+							'2meter',
+							'beatRhythm',
+							'highLow',
+							'la',
+							're',
+							'ta-a'
+						])}
 						<h2>Other Properties</h2>
 						{makeContentEditableChunks([
 							'informantPerformer',
