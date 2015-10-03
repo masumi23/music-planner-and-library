@@ -136,6 +136,9 @@ export default class Song extends React.Component {
 							'procedure',
 							'imgUrl'
 						])}
+						<img
+							src={this.state.currentSong.imgUrl}
+							className={this.state.currentSong.imgUrl ? '' : 'hidden'} />
 					</div>
 
 					<div className="col-sm-4">
