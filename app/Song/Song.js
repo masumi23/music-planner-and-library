@@ -19,20 +19,22 @@ export default class Song extends React.Component {
   componentWillReceiveProps(newProps) {
   	let currentSong = newProps.currentSong;
   	this.setState({currentSong: currentSong});
+  	this.prepareSongForCopying(currentSong);
   }
 
-  makeCopy() {
-  	let cS = this.props.currentSong;
+  prepareSongForCopying(cS = this.state.currentSong) {
+  	if (!cS) return false;
+
   	this.setState({copyValue:
-  		cS.songKey +
-  		cS.toneSet +
+  		cS.songKey + '&nbsp' +
+  		cS.toneSet + ' ' +
   		cS.materials +
   		cS.title +
   		cS.url +
   		cS.goal +
   		cS.procedure
   	});
-
+  	console.log('prepared for copying ' + cS.title);
   }
 
   toggleEditMode() {
@@ -49,6 +51,7 @@ export default class Song extends React.Component {
   	console.debug('Saving song data!', this.state.currentSong);
   	this.props.updateSong(this.state.currentSong);
   	this.toggleEditMode();
+  	this.prepareSongForCopying(currentSong);
   	// this.setState({editMode: !this.state.editMode});
   }
 
@@ -92,6 +95,10 @@ export default class Song extends React.Component {
 	  	return <div>{chunks}</div>;
 	  }
 
+	  function copySong() {
+	  	this.setState({copied: true});
+	  }
+
 		return (
 			<div className={styles.song}>
 				<h1 className="heading">
@@ -99,21 +106,31 @@ export default class Song extends React.Component {
 				</h1>
 
 				<div className={this.state.editMode ? 'hidden' : ''}>
-					<button onClick={this.toggleEditMode.bind(this)}>{this.state.editMode ? 'Editing' : 'Click to Edit'}</button>
+					<button onClick={this.toggleEditMode.bind(this)}>
+						{this.state.editMode ? 'Editing' : 'Click to Edit'}
+					</button>
+
+					<CopyToClipboard
+							className="pull-right"
+							text={this.state.copyValue}
+							onCopy={copySong.bind(this)}>
+						<button>Copy to Clipboard</button>
+					</CopyToClipboard>
 				</div>
+
+
 				<div className={this.state.editMode ? '' : 'hidden'}>
-					<button onClick={this.saveSongData.bind(this)}>Save Data</button>
-					<button onClick={this.cancelEdit.bind(this)}>Cancel</button>
+					<button onClick={this.saveSongData.bind(this)}>
+						Save Data
+					</button>
+					<button onClick={this.cancelEdit.bind(this)}>
+						Cancel
+					</button>
 				</div>
 
 				<div className="row">
 					<div className="col-sm-4">
 						<h2>Most Important</h2>
-						<button onClick={this.makeCopy.bind(this)}>stupidthingtomakeitcopy</button>
-						<CopyToClipboard text={this.state.copyValue} onCopy={() =>
-							this.setState({copied: true})}>
-							<button>copy to clipboard</button>
-						</CopyToClipboard>
 						{makeContentEditableChunks([
 							'songKey',
 							'toneSet',
@@ -121,7 +138,8 @@ export default class Song extends React.Component {
 							'title',
 							'url',
 							'goal',
-							'procedure'
+							'procedure',
+							'imgUrl'
 						])}
 					</div>
 
@@ -153,10 +171,14 @@ export default class Song extends React.Component {
 							'highLow',
 							'la',
 							're',
-							'ta-a'
+							'ta-a',
+							'gameElement',
+							'danceMovement'
 						])}
 						<h2>Other Properties</h2>
 						{makeContentEditableChunks([
+							'generalNotes',
+							'textualSource',
 							'informantPerformer',
 							'origin',
 							'region',
