@@ -29,12 +29,12 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.5",
+    "copy-to-clipboard": "^1.0.4",
     "extract-text-webpack-plugin": "^0.8.2",
     "firebase": "^2.2.9",
     "lodash": "^3.10.1",
     "re-base": "^1.1.2",
     "react": "^0.13.3",
-    "react-copy-to-clipboard": "^3.0.0",
     "react-router": "^1.0.0-rc1",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.11.0"

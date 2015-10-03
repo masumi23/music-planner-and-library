@@ -2,7 +2,7 @@ import styles from './Song.css';
 
 import React from 'react';
 import ContentEditable from '../ContentEditable/ContentEditable.js';
-import CopyToClipboard from 'react-copy-to-clipboard';
+import CopyToClipboard from 'copy-to-clipboard';
 
 export default class Song extends React.Component {
 
@@ -10,31 +10,13 @@ export default class Song extends React.Component {
     super(props);
     this.state = {
     	editMode: false,
-      currentSong: null,
-      copyValue: 'poo',
-      copied: false
+      currentSong: null
     };
   }
 
   componentWillReceiveProps(newProps) {
   	let currentSong = newProps.currentSong;
   	this.setState({currentSong: currentSong});
-  	this.prepareSongForCopying(currentSong);
-  }
-
-  prepareSongForCopying(cS = this.state.currentSong) {
-  	if (!cS) return false;
-
-  	this.setState({copyValue:
-  		cS.songKey + '&nbsp' +
-  		cS.toneSet + ' ' +
-  		cS.materials +
-  		cS.title +
-  		cS.url +
-  		cS.goal +
-  		cS.procedure
-  	});
-  	console.log('prepared for copying ' + cS.title);
   }
 
   toggleEditMode() {
@@ -51,11 +33,29 @@ export default class Song extends React.Component {
   	console.debug('Saving song data!', this.state.currentSong);
   	this.props.updateSong(this.state.currentSong);
   	this.toggleEditMode();
-  	this.prepareSongForCopying(currentSong);
   	// this.setState({editMode: !this.state.editMode});
   }
 
-  handleChange(e) {
+  copySongToClipboard() {
+  	let currentSong = this.state.currentSong;
+  	let keysToCopy = [
+  		'songKey',
+  		'toneSet',
+  		'materials',
+  		'title',
+  		'url',
+  		'goal',
+  		'procedure'
+  	];
+
+  	let textToCopy = keysToCopy
+  		.map((key) => currentSong[key])
+  		.join('\t');
+
+		CopyToClipboard(textToCopy);
+  }
+
+	handleChange(e) {
   	// clone current song so we don't mutate state directly
   	let currSong = Object.assign({}, this.state.currentSong);
   	console.log(e.target.key, e.target.value);
@@ -95,11 +95,7 @@ export default class Song extends React.Component {
 	  	return <div>{chunks}</div>;
 	  }
 
-	  function copySong() {
-	  	this.setState({copied: true});
-	  }
-
-		return (
+	  return (
 			<div className={styles.song}>
 				<h1 className="heading">
 					{makeContentEditable('title')}
@@ -110,12 +106,11 @@ export default class Song extends React.Component {
 						{this.state.editMode ? 'Editing' : 'Click to Edit'}
 					</button>
 
-					<CopyToClipboard
-							className="pull-right"
-							text={this.state.copyValue}
-							onCopy={copySong.bind(this)}>
-						<button>Copy to Clipboard</button>
-					</CopyToClipboard>
+					<button
+						className="pull-right"
+						onClick={this.copySongToClipboard.bind(this)}>
+							Copy to Clipboard
+						</button>
 				</div>
 
 
