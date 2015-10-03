@@ -71,8 +71,6 @@ export default class App extends React.Component {
   }
 
   render() {
-    console.log("Ap render with a state of ");
-    console.log(this.state);
     return (
       <div>
         <SongList

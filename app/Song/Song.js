@@ -11,7 +11,7 @@ export default class Song extends React.Component {
     this.state = {
     	editMode: false,
       currentSong: null,
-      copyValue: "testcopy",
+      copyValue: 'poo',
       copied: false
     };
   }
@@ -19,6 +19,20 @@ export default class Song extends React.Component {
   componentWillReceiveProps(newProps) {
   	let currentSong = newProps.currentSong;
   	this.setState({currentSong: currentSong});
+  }
+
+  makeCopy() {
+  	let cS = this.props.currentSong;
+  	this.setState({copyValue:
+  		cS.songKey +
+  		cS.toneSet +
+  		cS.materials +
+  		cS.title +
+  		cS.url +
+  		cS.goal +
+  		cS.procedure
+  	});
+
   }
 
   toggleEditMode() {
@@ -36,11 +50,6 @@ export default class Song extends React.Component {
   	this.props.updateSong(this.state.currentSong);
   	this.toggleEditMode();
   	// this.setState({editMode: !this.state.editMode});
-  }
-
-  copy() {
-  	console.log('copycat');
-  	let desiredData = "hi";
   }
 
   handleChange(e) {
@@ -100,6 +109,7 @@ export default class Song extends React.Component {
 				<div className="row">
 					<div className="col-sm-4">
 						<h2>Most Important</h2>
+						<button onClick={this.makeCopy.bind(this)}>stupidthingtomakeitcopy</button>
 						<CopyToClipboard text={this.state.copyValue} onCopy={() =>
 							this.setState({copied: true})}>
 							<button>copy to clipboard</button>
