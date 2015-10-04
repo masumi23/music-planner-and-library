@@ -110,7 +110,7 @@ export default class Song extends React.Component {
 					</div>
 
 					<div className="col-sm-4">
-						<h2>Analysis Properties</h2>
+						<h3>Analysis Properties</h3>
 						{makeContentEditableChunks([
 							'toneSet',
 							'scale',
@@ -127,7 +127,7 @@ export default class Song extends React.Component {
 					</div>
 
 					<div className="col-sm-4">
-						<h2>In these lists:</h2>
+						<h3>In these lists:</h3>
 						{makeContentEditableChunks([
 							'pentatonic',
 							'taTiti',
@@ -141,7 +141,7 @@ export default class Song extends React.Component {
 							'gameElement',
 							'danceMovement'
 						])}
-						<h2>Other Properties</h2>
+						<h3>Other Properties</h3>
 						{makeContentEditableChunks([
 							'generalNotes',
 							'textualSource',

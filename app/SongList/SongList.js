@@ -6,10 +6,6 @@ import {Link} from 'react-router';
 
 export default class SongList extends React.Component {
 
-  addSong() {
-
-  }
-
   render() {
     var createItem = function(song, index) {
       return (
