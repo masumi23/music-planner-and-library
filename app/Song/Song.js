@@ -1,8 +1,8 @@
 import styles from './Song.css';
 
 import React from 'react';
+import SongButtons from '../SongButtons/SongButtons.js';
 import ContentEditable from '../ContentEditable/ContentEditable.js';
-import CopyToClipboard from 'copy-to-clipboard';
 
 export default class Song extends React.Component {
 
@@ -34,25 +34,6 @@ export default class Song extends React.Component {
   	this.props.updateSong(this.state.currentSong);
   	this.toggleEditMode();
   	// this.setState({editMode: !this.state.editMode});
-  }
-
-  copySongToClipboard() {
-  	let currentSong = this.state.currentSong;
-  	let keysToCopy = [
-  		'songKey',
-  		'toneSet',
-  		'materials',
-  		'title',
-  		'url',
-  		'goal',
-  		'procedure'
-  	];
-
-  	let textToCopy = keysToCopy
-  		.map((key) => currentSong[key])
-  		.join('\t');
-
-		CopyToClipboard(textToCopy);
   }
 
 	handleChange(e) {
@@ -101,31 +82,18 @@ export default class Song extends React.Component {
 					{makeContentEditable('title')}
 				</h1>
 
-				<div className={this.state.editMode ? 'hidden' : ''}>
-					<button onClick={this.toggleEditMode.bind(this)}>
-						{this.state.editMode ? 'Editing' : 'Click to Edit'}
-					</button>
-
-					<button
-						className="pull-right"
-						onClick={this.copySongToClipboard.bind(this)}>
-							Copy to Clipboard
-						</button>
-				</div>
-
-
-				<div className={this.state.editMode ? '' : 'hidden'}>
-					<button onClick={this.saveSongData.bind(this)}>
-						Save Data
-					</button>
-					<button onClick={this.cancelEdit.bind(this)}>
-						Cancel
-					</button>
-				</div>
+				<SongButtons
+					className={styles.buttons}
+					editMode={this.state.editMode}
+					toggleEditMode={this.toggleEditMode.bind(this)}
+					cancelEdit={this.cancelEdit.bind(this)}
+					saveSongData={this.saveSongData.bind(this)}
+					currentSong={this.state.currentSong}
+				/>
 
 				<div className="row">
 					<div className="col-sm-4">
-						<h2>Most Important</h2>
+						<h3>Most Important</h3>
 						{makeContentEditableChunks([
 							'songKey',
 							'toneSet',
