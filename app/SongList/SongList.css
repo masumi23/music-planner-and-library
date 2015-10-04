@@ -10,3 +10,9 @@
   width: 250px;
 	overflow: scroll;
 }
+
+@media print {
+	.list {
+		display: none;
+	}
+}
