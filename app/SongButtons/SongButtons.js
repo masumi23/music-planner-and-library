@@ -1,5 +1,3 @@
-import styles from './SongButtons.css';
-
 import React from 'react';
 import CopyToClipboard from 'copy-to-clipboard';
 
@@ -39,7 +37,7 @@ export default class SongButtons extends React.Component{
 							className="pull-right"
 							onClick={this.copySongToClipboard.bind(this)}>
 								Copy to Clipboard
-							</button>
+						</button>
 					</div>
 				</div>
 
