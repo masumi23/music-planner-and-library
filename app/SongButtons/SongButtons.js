@@ -33,11 +33,16 @@ export default class SongButtons extends React.Component{
 							{this.props.editMode ? 'Editing' : 'Click to Edit'}
 						</button>
 
+						<button onClick={this.props.togglePrintView}>
+							{this.props.printView ? 'turn off Print View' : 'Print View'}
+						</button>
+
 						<button
 							className="pull-right"
 							onClick={this.copySongToClipboard.bind(this)}>
 								Copy to Clipboard
 						</button>
+
 					</div>
 				</div>
 

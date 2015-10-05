@@ -16,6 +16,7 @@ export default class SongDetailsProperties extends React.Component {
 		  		{self.props.makeContentEditable(key)}
 				</div>
 	  	));
+	  if (!this.props.printView) {
 
 	  	return <div>{chunks}</div>;
 	  }
@@ -87,6 +88,48 @@ export default class SongDetailsProperties extends React.Component {
 				</div>
 			</div>
 	  );
+		  );
+
+	  } else {
+
+	  	return (
+	  		<div className="row">
+	  			<div>Informant/Performer: {currentSong.informantPerformer}</div>
+	  			<div>Source: {currentSong.textualSource}</div>
+	  			<h3>Analysis Properties</h3>
+						{self.makeContentEditableChunks.call(self, [
+							'toneSet',
+							'scale',
+							'meter',
+							'rhythmSet',
+							'formAnalysis',
+							'formType',
+							'songType',
+							'subjects',
+							'gameType',
+							'measures',
+							'range',
+							'gradeFloor',
+							'gradeCeil',
+							'startingPitch',
+							'songKey',
+							'tonalCenter'
+						])}
+						<h3>Pedagogic Analysis</h3>
+						{self.makeContentEditableChunks.call(self, [
+							'mElement',
+							'mContext',
+							'mMotives',
+							'rElement',
+							'rContext',
+							'rMotives',
+							'partWork',
+							'otherUses'
+						])}
+	  		</div>
+	  	);
+	  }
+
   }
 
 }

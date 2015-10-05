@@ -20,6 +20,11 @@ export default class Song extends React.Component {
   	this.setState({currentSong: currentSong});
   }
 
+  togglePrintView() {
+  	this.setState({printView: !this.state.printView});
+  	console.log('print view is ' + this.state.printView);
+  }
+
   toggleEditMode() {
   	this.setState({editMode: !this.state.editMode});
   }
@@ -89,20 +94,23 @@ export default class Song extends React.Component {
 				</h1>
 
 				<SongButtons
+					currentSong={this.state.currentSong}
 					className={styles.buttons}
 					editMode={this.state.editMode}
+					printView={this.state.printView}
 					toggleEditMode={this.toggleEditMode.bind(this)}
 					cancelEdit={this.cancelEdit.bind(this)}
 					saveSongData={this.saveSongData.bind(this)}
-					currentSong={this.state.currentSong}
+					togglePrintView={this.togglePrintView.bind(this)}
 				/>
 
 				<div className="row">
 
 					<SongDetailsProperties
-						editMode={this.state.editMode}
 						currentSong={this.state.currentSong}
+						editMode={this.state.editMode}
 						makeContentEditable={this.makeContentEditable.bind(this)}
+						printView={this.state.printView}
 					/>
 
 				</div>
