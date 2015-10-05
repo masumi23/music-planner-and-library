@@ -11,7 +11,8 @@ export default class Song extends React.Component {
     super(props);
     this.state = {
     	editMode: false,
-      currentSong: null
+      currentSong: null,
+      printView: false
     };
   }
 
@@ -74,17 +75,6 @@ export default class Song extends React.Component {
 
 	  if (!currentSong) {
 	  	return null;
-	  }
-
-	  function makeContentEditableChunks(keys) {
-	  	let chunks = keys.map((key) => (
-	  		<div className={currentSong[key] || self.state.editMode ? '': 'hidden'}>
-	  			<h4>{key}</h4>
-		  		{self.makeContentEditable.call(self, key)}
-				</div>
-	  	));
-
-	  	return <div>{chunks}</div>;
 	  }
 
 	  return (
