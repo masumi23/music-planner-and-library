@@ -1,6 +1,7 @@
 import React from 'react';
 
 import ContentEditable from '../ContentEditable/ContentEditable.js';
+import Score from '../Score/Score.js';
 
 export default class SongDetailsProperties extends React.Component {
 
@@ -24,6 +25,7 @@ export default class SongDetailsProperties extends React.Component {
 
 		  return (
 		  	<div className="row">
+		  		<Score scoreNotation="currentSong.scoreNotation"></Score>
 					<div className="col-sm-4">
 						<h3>Most Important</h3>
 						{self.makeContentEditableChunks.call(self, [
@@ -34,11 +36,14 @@ export default class SongDetailsProperties extends React.Component {
 							'url',
 							'goal',
 							'procedure',
-							'imgUrl'
+							'imgUrl',
+							'scoreNotation'
 						])}
 						<img
 							src={currentSong.imgUrl}
-							className={currentSong.imgUrl ? '' : 'hidden'} />
+							className={currentSong.imgUrl ? '' : 'hidden'}
+						/>
+
 					</div>
 
 					<div className="col-sm-4">
@@ -73,7 +78,6 @@ export default class SongDetailsProperties extends React.Component {
 							'otherUses'
 						])}
 					</div>
-
 
 					<div className="col-sm-4">
 						<h3>In these lists:</h3>
@@ -111,36 +115,44 @@ export default class SongDetailsProperties extends React.Component {
 	  		<div className="row">
 	  			<div>Informant/Performer: {currentSong.informantPerformer}</div>
 	  			<div>Source: {currentSong.textualSource}</div>
-	  			<h3>Analysis Properties</h3>
-						{self.makeContentEditableChunks.call(self, [
-							'toneSet',
-							'scale',
-							'meter',
-							'rhythmSet',
-							'formAnalysis',
-							'formType',
-							'songType',
-							'subjects',
-							'gameType',
-							'measures',
-							'range',
-							'gradeFloor',
-							'gradeCeil',
-							'startingPitch',
-							'songKey',
-							'tonalCenter'
-						])}
-						<h3>Pedagogic Analysis</h3>
-						{self.makeContentEditableChunks.call(self, [
-							'mElement',
-							'mContext',
-							'mMotives',
-							'rElement',
-							'rContext',
-							'rMotives',
-							'partWork',
-							'otherUses'
-						])}
+	  			<div className="col-sm-4">
+		  			<h3>Analysis Properties</h3>
+							{self.makeContentEditableChunks.call(self, [
+								'toneSet',
+								'scale',
+								'meter',
+								'rhythmSet',
+								'formAnalysis',
+								'formType',
+								'songType',
+								'subjects',
+								'gameType',
+								'measures',
+								'range',
+								'gradeFloor',
+								'gradeCeil',
+								'startingPitch',
+								'songKey',
+								'tonalCenter'
+							])}
+							<h3>Pedagogic Analysis</h3>
+							{self.makeContentEditableChunks.call(self, [
+								'mElement',
+								'mContext',
+								'mMotives',
+								'rElement',
+								'rContext',
+								'rMotives',
+								'partWork',
+								'otherUses'
+							])}
+						</div>
+						<div className="col-sm-8">
+							<img
+								src={currentSong.imgUrl}
+								className={currentSong.imgUrl ? '' : 'hidden'}
+							/>
+						</div>
 	  		</div>
 	  	);
 	  }
