@@ -10,13 +10,12 @@ export default class SongButtons extends React.Component{
   		'toneSet',
   		'materials',
   		'title',
-  		'url',
   		'goal',
   		'procedure'
   	];
 
   	let textToCopy = keysToCopy
-  		.map((key) => currentSong[key])
+  		.map((key) => currentSong[key] || 'x')
   		.join('\t');
 
 		CopyToClipboard(textToCopy);
