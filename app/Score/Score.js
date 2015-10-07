@@ -13,7 +13,7 @@ export default class Score extends React.Component {
 
   renderScore() {
     let domNode = React.findDOMNode(this.refs.score);
-    window.ABCJS.renderAbc(domNode, this.props.scoreNotation || def);
+    window.ABCJS.renderAbc(domNode, this.props.scoreNotation);
   }
 
   render() {

@@ -1,3 +1,4 @@
+import styles from './SongDetailsProperties.css';
 import React from 'react';
 
 import ContentEditable from '../ContentEditable/ContentEditable.js';
@@ -25,7 +26,10 @@ export default class SongDetailsProperties extends React.Component {
 
 		  return (
 		  	<div className="row">
-		  		<Score scoreNotation="currentSong.scoreNotation"></Score>
+		  		<Score scoreNotation={currentSong.scoreNotation}></Score>
+		  		<div className={'col-xs-12 ' + styles.scoreNotationInput + (this.props.editMode ? '': ' hidden')}>
+			  		{this.props.makeContentEditable('scoreNotation')}
+		  		</div>
 					<div className="col-sm-4">
 						<h3>Most Important</h3>
 						{self.makeContentEditableChunks.call(self, [
@@ -36,8 +40,7 @@ export default class SongDetailsProperties extends React.Component {
 							'url',
 							'goal',
 							'procedure',
-							'imgUrl',
-							'scoreNotation'
+							'imgUrl'
 						])}
 						<img
 							src={currentSong.imgUrl}
@@ -113,8 +116,10 @@ export default class SongDetailsProperties extends React.Component {
 
 	  	return (
 	  		<div className="row">
-	  			<div>Informant/Performer: {currentSong.informantPerformer}</div>
-	  			<div>Source: {currentSong.textualSource}</div>
+	  			<div className="styles.generalInfo">
+		  			<div>Informant/Performer: {currentSong.informantPerformer}</div>
+		  			<div>Source: {currentSong.textualSource}</div>
+	  			</div>
 	  			<div className="col-sm-4">
 		  			<h3>Analysis Properties</h3>
 							{self.makeContentEditableChunks.call(self, [
