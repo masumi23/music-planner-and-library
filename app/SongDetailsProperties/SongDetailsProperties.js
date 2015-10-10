@@ -1,3 +1,4 @@
+
 import styles from './SongDetailsProperties.css';
 import React from 'react';
 
@@ -95,7 +96,8 @@ export default class SongDetailsProperties extends React.Component {
 							're',
 							'ta-a',
 							'gameElement',
-							'danceMovement'
+							'danceMovement',
+							'moodOf5th'
 						])}
 						<h3>Other Properties</h3>
 						{self.makeContentEditableChunks.call(self, [
@@ -104,6 +106,7 @@ export default class SongDetailsProperties extends React.Component {
 							'informantPerformer',
 							'origin',
 							'region',
+							'ethnicity',
 							'source',
 							'state',
 							'subSubject'
