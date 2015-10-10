@@ -23,9 +23,60 @@ export default class SongDetailsProperties extends React.Component {
   	let self = this;
   	let currentSong = this.props.currentSong;
 
-	  if (!this.props.printView) {
+	  if (this.props.printView) {
 
 		  return (
+	  		<div className="row">
+	  			<div className="styles.generalInfo">
+		  			<div>Informant/Performer: {currentSong.informantPerformer}</div>
+		  			<div>Source: {currentSong.textualSource}</div>
+	  			</div>
+	  			<div className="col-sm-4">
+		  			<h3>Analysis Properties</h3>
+							{self.makeContentEditableChunks.call(self, [
+								'toneSet',
+								'scale',
+								'meter',
+								'rhythmSet',
+								'formAnalysis',
+								'formType',
+								'songType',
+								'subjects',
+								'gameType',
+								'measures',
+								'range',
+								'gradeFloor',
+								'gradeCeil',
+								'startingPitch',
+								'songKey',
+								'tonalCenter'
+							])}
+							<h3>Pedagogic Analysis</h3>
+							{self.makeContentEditableChunks.call(self, [
+								'mElement',
+								'mContext',
+								'mMotives',
+								'rElement',
+								'rContext',
+								'rMotives',
+								'partWork',
+								'otherUses'
+							])}
+						</div>
+						<div className="col-sm-8">
+							<img
+								src={currentSong.imgUrl}
+								className={currentSong.imgUrl ? '' : 'hidden'}
+							/>
+						</div>
+	  		</div>
+	  	);
+
+
+	  } else if (this.props.scoreEdit) {
+
+	  } else {
+	  	return (
 		  	<div className="row">
 		  		<Score scoreNotation={currentSong.scoreNotation}></Score>
 		  		<div className={'col-xs-12 ' + styles.scoreNotationInput + (this.props.editMode ? '': ' hidden')}>
@@ -84,7 +135,7 @@ export default class SongDetailsProperties extends React.Component {
 					</div>
 
 					<div className="col-sm-4">
-						<h3>In these lists:</h3>
+						<h3>Has tags:</h3>
 						{self.makeContentEditableChunks.call(self, [
 							'pentatonic',
 							'taTiti',
@@ -115,54 +166,6 @@ export default class SongDetailsProperties extends React.Component {
 				</div>
 		  );
 
-	  } else {
-
-	  	return (
-	  		<div className="row">
-	  			<div className="styles.generalInfo">
-		  			<div>Informant/Performer: {currentSong.informantPerformer}</div>
-		  			<div>Source: {currentSong.textualSource}</div>
-	  			</div>
-	  			<div className="col-sm-4">
-		  			<h3>Analysis Properties</h3>
-							{self.makeContentEditableChunks.call(self, [
-								'toneSet',
-								'scale',
-								'meter',
-								'rhythmSet',
-								'formAnalysis',
-								'formType',
-								'songType',
-								'subjects',
-								'gameType',
-								'measures',
-								'range',
-								'gradeFloor',
-								'gradeCeil',
-								'startingPitch',
-								'songKey',
-								'tonalCenter'
-							])}
-							<h3>Pedagogic Analysis</h3>
-							{self.makeContentEditableChunks.call(self, [
-								'mElement',
-								'mContext',
-								'mMotives',
-								'rElement',
-								'rContext',
-								'rMotives',
-								'partWork',
-								'otherUses'
-							])}
-						</div>
-						<div className="col-sm-8">
-							<img
-								src={currentSong.imgUrl}
-								className={currentSong.imgUrl ? '' : 'hidden'}
-							/>
-						</div>
-	  		</div>
-	  	);
 	  }
 
   }
