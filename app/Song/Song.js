@@ -45,7 +45,6 @@ export default class Song extends React.Component {
 	handleChange(e) {
   	// clone current song so we don't mutate state directly
   	let currSong = Object.assign({}, this.state.currentSong);
-  	console.log(e.target.key, e.target.value);
   	currSong[e.target.key] = e.target.value;
   	this.setState({currentSong: currSong});
   }
@@ -92,6 +91,7 @@ export default class Song extends React.Component {
 					cancelEdit={this.cancelEdit.bind(this)}
 					saveSongData={this.saveSongData.bind(this)}
 					togglePrintView={this.togglePrintView.bind(this)}
+					deleteCurrentSong={this.props.deleteCurrentSong}
 				/>
 
 				<div className="row">

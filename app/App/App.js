@@ -58,16 +58,36 @@ export default class App extends React.Component {
   }
 
   addSong() {
-    // console.log(this.props.items[1].title);
-    console.log(this);
+    let newSong = {
+      title: 'Hi!',
+      id: this.state.items[this.state.items.length - 1].id+1
+    };
+
     let newList = React.addons.update(this.state.items, {
-      $push: [{
-        title: 'Hi!',
-        id: this.state.items.length
-      }]
+      $push: [newSong]
     });
+
+    this.setState({
+      items: newList,
+      currentSong: newSong
+    });
+  }
+
+  deleteCurrentSong() {
+    let warning = 'Are you sure you want to delete this song?\nThis operation' +
+                ' is not recoverable.\n\n' +
+                'Press OK to delete the song permanently.';
+    if (!confirm(warning)) {
+      return false;
+    }
+
+    let i = _.findIndex(this.state.items, this.state.currentSong);
+    let newList = React.addons.update(this.state.items, {
+      $splice: [[i,1]]
+    });
+    console.log(newList);
     this.setState({items: newList});
-    this.setState({currentSong: this.state.items[this.state.items.length - 1]});
+    this.setState({currentSong: null});
   }
 
   render() {
@@ -79,7 +99,8 @@ export default class App extends React.Component {
 
         <Song
           currentSong={this.state.currentSong}
-          updateSong={this.updateCurrentSong.bind(this)}/>
+          updateSong={this.updateCurrentSong.bind(this)}
+          deleteCurrentSong={this.deleteCurrentSong.bind(this)}/>
 
       </div>
     );

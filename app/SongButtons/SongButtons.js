@@ -36,6 +36,10 @@ export default class SongButtons extends React.Component{
 							{this.props.printView ? 'turn off Print View' : 'Print View'}
 						</button>
 
+						<button onClick={this.props.deleteCurrentSong}>
+							Delete
+						</button>
+
 						<button
 							className="pull-right"
 							onClick={this.copySongToClipboard.bind(this)}>
