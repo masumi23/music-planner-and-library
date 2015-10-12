@@ -1,3 +1,5 @@
+// wishlist: Songs in alphabetical order. Find a safe way to delete songs without messing up the order
+
 import styles from './SongList.css';
 import React from 'react';
 import {Link} from 'react-router';
