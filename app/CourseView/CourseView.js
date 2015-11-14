@@ -2,6 +2,7 @@ import React from 'react';
 import Firebase from 'firebase';
 import Rebase from 're-base';
 import _ from 'lodash';
+import Course from '../Course/Course.js'
 
 export default class Courses extends React.Component {
 
@@ -72,8 +73,8 @@ export default class Courses extends React.Component {
     });
   }
 
-
 	render () {
+		console.log("Course View");
 		var createItem = function(course, index) {
       return (
         <li key={index + course.id}>
@@ -85,22 +86,11 @@ export default class Courses extends React.Component {
 		return (
 			<div>
 				<div>
-				Buttons
-				</div>
-				<div>
-				<div>
+        	Hi
         	<ul className={'col-xs-4 '}>
           	{this.state.items.map(createItem)}
         	</ul>
       	</div>
-				Song List
-				</div>
-				<div>
-				MasterSongList for course
-				</div>
-				<div>
-				Stats and Info
-				</div>
 			</div>
 		);
 	}

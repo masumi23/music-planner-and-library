@@ -72,9 +72,6 @@ export default class SongDetailsProperties extends React.Component {
 	  		</div>
 	  	);
 
-
-	  } else if (this.props.scoreEdit) {
-
 	  } else {
 	  	return (
 		  	<div className="row">
@@ -85,14 +82,13 @@ export default class SongDetailsProperties extends React.Component {
 					<div className="col-sm-4">
 						<h3>Most Important</h3>
 						{self.makeContentEditableChunks.call(self, [
-							'songKey',
+							'startingPitch',
 							'toneSet',
 							'materials',
 							'title',
 							'url',
 							'goal',
-							'procedure',
-							'imgUrl'
+							'procedure'
 						])}
 						<img
 							src={currentSong.imgUrl}
@@ -107,7 +103,9 @@ export default class SongDetailsProperties extends React.Component {
 							'toneSet',
 							'scale',
 							'meter',
+							'tonalCenter',
 							'rhythmSet',
+							'CSP range',
 							'formAnalysis',
 							'formType',
 							'songType',
@@ -117,9 +115,8 @@ export default class SongDetailsProperties extends React.Component {
 							'range',
 							'gradeFloor',
 							'gradeCeil',
-							'startingPitch',
 							'songKey',
-							'tonalCenter'
+							'altTitle'
 						])}
 						<h3>Pedagogic Analysis</h3>
 						{self.makeContentEditableChunks.call(self, [
@@ -130,13 +127,16 @@ export default class SongDetailsProperties extends React.Component {
 							'rContext',
 							'rMotives',
 							'partWork',
-							'otherUses'
+							'otherUses',
+							'shapes',
+							'varientLink'
 						])}
 					</div>
 
 					<div className="col-sm-4">
-						<h3>Has tags:</h3>
+						<h3>Has tags (transition out of boolean):</h3>
 						{self.makeContentEditableChunks.call(self, [
+							'tagList',
 							'pentatonic',
 							'taTiti',
 							'soMi',
@@ -148,11 +148,14 @@ export default class SongDetailsProperties extends React.Component {
 							'ta-a',
 							'gameElement',
 							'danceMovement',
-							'moodOf5th'
+							'moodOf5th',
+							'improvisation',
+							'complete'
 						])}
 						<h3>Other Properties</h3>
 						{self.makeContentEditableChunks.call(self, [
 							'generalNotes',
+							'lyrics',
 							'textualSource',
 							'informantPerformer',
 							'origin',
@@ -160,7 +163,8 @@ export default class SongDetailsProperties extends React.Component {
 							'ethnicity',
 							'source',
 							'state',
-							'subSubject'
+							'subSubject',
+							'altTitle'
 						])}
 					</div>
 				</div>

@@ -21,6 +21,7 @@ export default class SongList extends React.Component {
       <div>
         <ul className={'col-xs-4 ' + styles.list}>
           <li><button onClick={this.props.addSong}>New Song</button></li>
+          <li><button>Sort</button></li>
           {this.props.items.map(createItem)}
         </ul>
       </div>

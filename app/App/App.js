@@ -8,7 +8,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: "courses"
+      view: "songs"
     };
   }
 
@@ -23,6 +23,12 @@ export default class App extends React.Component {
       return (
         <div>
           <CourseView />
+        </div>
+      );
+    } else if (this.state.view === "tags") {
+      return (
+        <div>
+          <TagView />
         </div>
       );
     }

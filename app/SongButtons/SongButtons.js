@@ -6,7 +6,7 @@ export default class SongButtons extends React.Component{
   copySongToClipboard() {
   	let currentSong = this.props.currentSong;
   	let keysToCopy = [
-  		'songKey',
+  		'startingPitch',
   		'toneSet',
   		'materials',
   		'title',
