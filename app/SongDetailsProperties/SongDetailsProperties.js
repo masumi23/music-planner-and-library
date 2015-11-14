@@ -88,7 +88,8 @@ export default class SongDetailsProperties extends React.Component {
 							'title',
 							'url',
 							'goal',
-							'procedure'
+							'procedure',
+							'tagList'
 						])}
 						<img
 							src={currentSong.imgUrl}
@@ -102,6 +103,7 @@ export default class SongDetailsProperties extends React.Component {
 						{self.makeContentEditableChunks.call(self, [
 							'toneSet',
 							'scale',
+							'hemitonic',
 							'meter',
 							'tonalCenter',
 							'rhythmSet',
@@ -115,9 +117,11 @@ export default class SongDetailsProperties extends React.Component {
 							'range',
 							'gradeFloor',
 							'gradeCeil',
-							'songKey',
 							'altTitle'
 						])}
+					</div>
+
+					<div className="col-sm-4">
 						<h3>Pedagogic Analysis</h3>
 						{self.makeContentEditableChunks.call(self, [
 							'mElement',
@@ -131,32 +135,14 @@ export default class SongDetailsProperties extends React.Component {
 							'shapes',
 							'varientLink'
 						])}
-					</div>
 
-					<div className="col-sm-4">
-						<h3>Has tags (transition out of boolean):</h3>
-						{self.makeContentEditableChunks.call(self, [
-							'tagList',
-							'pentatonic',
-							'taTiti',
-							'soMi',
-							'2meter',
-							'beatRhythm',
-							'highLow',
-							'la',
-							're',
-							'ta-a',
-							'gameElement',
-							'danceMovement',
-							'moodOf5th',
-							'improvisation',
-							'complete'
-						])}
 						<h3>Other Properties</h3>
 						{self.makeContentEditableChunks.call(self, [
+
 							'generalNotes',
 							'lyrics',
 							'textualSource',
+							'otherSources',
 							'informantPerformer',
 							'origin',
 							'region',
