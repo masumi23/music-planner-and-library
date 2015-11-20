@@ -1,18 +1,23 @@
+import style from './SongView.css'
+
 import React from 'react';
 import SongList from '../SongList/SongList.js';
+import TagList from '../TagList/TagList.js';
 import Song from '../Song/Song.js';
 import Firebase from 'firebase';
 import Rebase from 're-base';
 import _ from 'lodash';
 
 export default class SongView extends React.Component {
- 	constructor(props) {
-	  super(props);
-	  this.state = {
-	    items: [],
-	    currentSong: null
-	  };
-	}
+  constructor(props) {
+    super(props);
+    this.state = {
+      items: [],
+      currentSong: null,
+      sort: false,
+      filters: []
+    };
+  }
 
   componentWillMount() {
     this.base = Rebase.createClass('https://songdatabase.firebaseio.com/');
@@ -73,6 +78,13 @@ export default class SongView extends React.Component {
     });
   }
 
+  applyFilters(filters) {
+    console.log("filter set: " + filters);
+    this.setState({
+      filters: filters
+    });
+  }
+
   deleteCurrentSong() {
     let warning = 'Are you sure you want to delete this song?\nThis operation' +
                 ' is not recoverable.\n\n' +
@@ -90,12 +102,31 @@ export default class SongView extends React.Component {
     this.setState({currentSong: null});
   }
 
+  toggleSort() {
+    this.setState({
+      'sort': !this.state.sort
+    });
+  }
+
   render () {
+
+    let tagList = (
+      <TagList
+        songs={this.state.items}
+        applyFilters={this.applyFilters.bind(this)}
+      />
+    );
+
   	return (
   		<div>
-	  		<SongList
-	        items={this.state.items}
-	        addSong={this.addSong.bind(this)}/>
+        <button onClick={this.toggleSort.bind(this)}>Toggle Sort</button>
+
+        <SongList
+          items={this.state.items}
+          filters={this.state.filters}
+          addSong={this.addSong.bind(this)}/>
+
+        {this.state.sort ? tagList : null}
 
 	    	<Song
 	        currentSong={this.state.currentSong}

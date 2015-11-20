@@ -3,16 +3,17 @@
 }
 
 .list {
+  background: white;
   position: fixed;
   top: 30px;
   bottom: 0;
   left: 0;
   width: 250px;
-	overflow: scroll;
+  overflow: scroll;
 }
 
 @media print {
-	.list {
-		display: none;
-	}
+  .list {
+    display: none;
+  }
 }
