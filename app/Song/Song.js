@@ -94,7 +94,7 @@ export default class Song extends React.Component {
 					deleteCurrentSong={this.props.deleteCurrentSong}
 				/>
 
-				<div className="row">
+				<div className={styles.songDetailsProperties + ''}>
 
 					<SongDetailsProperties
 						currentSong={this.state.currentSong}

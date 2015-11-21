@@ -1,6 +1,18 @@
 .song {
-  margin-left: 250px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 15%;
+  margin-left: 20px;
   padding: 0 20px;
+  background: #FFF;
+}
+
+.songDetailsProperties {
+  position: absolute;
+  top: 80px;
+  bottom: 0;
 }
 
 @media print {

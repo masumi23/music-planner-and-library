@@ -12,15 +12,26 @@ export default class SongList extends React.Component {
     let tagsInSong = song.tagList ? song.tagList.split(',') : [];
     tagsInSong = tagsInSong.map((tag) => tag.trim());
     let unmatchedFilters = _.difference(this.props.filters, tagsInSong);
-    console.log(this.props.filters);
+    console.log(unmatchedFilters);
     return unmatchedFilters.length === 0;
   }
 
   render() {
     let createItem = function(song, index) {
       return (
-        <li key={index + song.id}>
-          <Link to={`/song/${song.id}`}>{song.title}</Link>
+        <li key={index + song.id} className='row'>
+          <Link to={`/song/${song.id}`}>
+            <div>
+              <div className={'col-sm-2 ' + styles.songTitle}>{song.title}</div>
+              <div className={'col-sm-1 ' + styles.songToneSet}>{song.toneSet}</div>
+              <div className={'col-sm-1 ' + styles.songScale}>{song.scale}</div>
+              <div className={'col-sm-1 ' + styles.songMElement}>{song.mElement}</div>
+              <div className={'col-sm-1 ' + styles.songMContext}>{song.mContext}</div>
+              <div className={'col-sm-3 ' + styles.songMMotives}>{song.mMotives}</div>
+              <div className={'col-sm-1 ' + styles.songRElement}>{song.rElement}</div>
+              <div className={'col-sm-2 ' + styles.songRMotives}>{song.rMotives}</div>
+            </div>
+          </Link>
         </li>
       );
     };
@@ -28,9 +39,18 @@ export default class SongList extends React.Component {
     let items = this.props.items.filter(this.songPassesFilter.bind(this));
     // console.log(this.props.items);
     return (
-      <div>
+      <div className={styles.wrapper}>
+        <div className={styles.header + ' row'}>
+          <div className={'col-sm-2 ' + styles.songTitle}>Title</div>
+          <div className={'col-sm-1 ' + styles.songToneSet}>Tone Set</div>
+          <div className={'col-sm-1 ' + styles.songScale}>Scale</div>
+          <div className={'col-sm-1 ' + styles.songMElement}>M-Element</div>
+          <div className={'col-sm-1 ' + styles.songMContext}>M-Context</div>
+          <div className={'col-sm-2 ' + styles.songMMotives}>M-Motives</div>
+          <div className={'col-sm-1 ' + styles.songRElement}>R-Element</div>
+          <div className={'col-sm-3 ' + styles.songRMotives}>R-Motives</div>
+        </div>
         <ul className={'col-xs-4 ' + styles.list}>
-          <li><button onClick={this.props.addSong}>New Song</button></li>
           {items.map(createItem)}
         </ul>
       </div>

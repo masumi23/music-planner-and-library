@@ -1,3 +1,5 @@
+// must fix add song
+
 import style from './SongView.css'
 
 import React from 'react';
@@ -9,6 +11,7 @@ import Rebase from 're-base';
 import _ from 'lodash';
 
 export default class SongView extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -49,6 +52,7 @@ export default class SongView extends React.Component {
   }
 
   updateCurrentSong(updatedSong) {
+    console.log(this);
     this.setState({currentSong: updatedSong});
 
     // clone list and update current song in list
@@ -63,6 +67,7 @@ export default class SongView extends React.Component {
   }
 
   addSong() {
+    console.log(this);
     let newSong = {
       title: 'Hi!',
       id: this.state.items[this.state.items.length - 1].id+1
@@ -103,6 +108,7 @@ export default class SongView extends React.Component {
   }
 
   toggleSort() {
+    console.log(this);
     this.setState({
       'sort': !this.state.sort
     });
@@ -119,6 +125,7 @@ export default class SongView extends React.Component {
 
   	return (
   		<div>
+        <button onClick={this.addSong}>New Song</button>
         <button onClick={this.toggleSort.bind(this)}>Toggle Sort</button>
 
         <SongList

@@ -2,13 +2,36 @@
   color: #0CD;
 }
 
-.list {
-  position: fixed;
+.wrapper {
+  position: absolute;
   top: 30px;
   bottom: 0;
   left: 0;
-  width: 250px;
+  width: 100%;
+}
+
+.list {
+  position: absolute;
+  top: 30px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 	overflow: scroll;
+  text-decoration: none;
+}
+
+.list li {
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  background-color: #ddd;
+  padding: 5px 0;
+}
+
+.songTitle {
+  background-color: #eee;
 }
 
 @media print {
