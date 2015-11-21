@@ -16,8 +16,9 @@
   bottom: 0;
   left: 0;
   width: 100%;
-	overflow: scroll;
+  overflow: scroll;
   text-decoration: none;
+  padding: 0;
 }
 
 .list li {

@@ -1,6 +1,6 @@
 // must fix add song
 
-import style from './SongView.css'
+import styles from './SongView.css';
 
 import React from 'react';
 import SongList from '../SongList/SongList.js';
@@ -125,15 +125,16 @@ export default class SongView extends React.Component {
 
   	return (
   		<div>
-        <button onClick={this.addSong}>New Song</button>
-        <button onClick={this.toggleSort.bind(this)}>Toggle Sort</button>
+        <div className={styles.nav}>
+          <button onClick={this.addSong}>New Song</button>
+          <button onClick={this.toggleSort.bind(this)}>Toggle Sort</button>
+          {this.state.sort ? tagList : null}
+        </div>
 
         <SongList
           items={this.state.items}
           filters={this.state.filters}
           addSong={this.addSong.bind(this)}/>
-
-        {this.state.sort ? tagList : null}
 
 	    	<Song
 	        currentSong={this.state.currentSong}

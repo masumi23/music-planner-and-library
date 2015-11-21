@@ -73,11 +73,11 @@ export default class Song extends React.Component {
 	  let currentSong = this.state.currentSong;
 
 	  if (!currentSong) {
-	  	return null;
+	  	return <div className={styles.song} />;
 	  }
 
 	  return (
-			<div className={styles.song}>
+			<div className={styles.song + (this.props.currentSong ? ' ' + styles['song-active'] : '')}>
 				<h1 className="heading">
 					{self.makeContentEditable.call(self, 'title')}
 				</h1>

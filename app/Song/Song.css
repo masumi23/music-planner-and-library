@@ -2,11 +2,16 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  right: 0;
-  left: 15%;
+  right: -100%;
+  width: 85%;
   margin-left: 20px;
   padding: 0 20px;
   background: #FFF;
+  transition: right 0.5s ease-in-out;
+}
+
+.song-active {
+  right: 0;
 }
 
 .songDetailsProperties {

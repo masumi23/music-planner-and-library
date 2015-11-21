@@ -1,6 +1,6 @@
 import React from 'react';
 import SongView from '../SongView/SongView.js';
-import CourseView from '../CourseView/CourseView.js'
+import CourseView from '../CourseView/CourseView.js';
 
 
 export default class App extends React.Component {
@@ -8,28 +8,22 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: "songs"
+      view: 'songs'
     };
   }
 
   render() {
-    if (this.state.view === "songs") {
+    if (this.state.view === 'songs') {
       return (
-        <div>
-          <SongView {... this.props}/>
-        </div>
+        <SongView {... this.props}/>
       );
-    } else if (this.state.view === "courses") {
+    } else if (this.state.view === 'courses') {
       return (
-        <div>
-          <CourseView />
-        </div>
+        <CourseView />
       );
-    } else if (this.state.view === "tags") {
+    } else if (this.state.view === 'tags') {
       return (
-        <div>
-          <TagView />
-        </div>
+        <TagView />
       );
     }
   }
