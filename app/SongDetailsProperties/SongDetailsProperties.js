@@ -83,11 +83,8 @@ export default class SongDetailsProperties extends React.Component {
 						<h3>Most Important</h3>
 						{self.makeContentEditableChunks.call(self, [
 							'startingPitch',
-							'toneSet',
-							'materials',
 							'title',
 							'url',
-							'goal',
 							'procedure',
 							'tagList'
 						])}
