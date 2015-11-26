@@ -1,0 +1,7 @@
+- keyboard shortcut for copying songs
+- Easy to get back to main screen of all songs without refreshing
+- Numbering how many songs are under each tag
+- Search function (automatically highlights the first song and you can navigate up and down with arrow keys. Hit enter to select that song)
+- Class Planning
+    + Organize by semesters
+    + Auto-completes songs
