@@ -14,11 +14,13 @@
   right: 0;
 }
 
-.songDetailsProperties {
+.songDetailsPropertiesWrapper {
   position: absolute;
   top: 110px;
   bottom: 0;
   overflow-y: scroll;
+  left: 20px;
+  right: 0;
 }
 
 @media print {

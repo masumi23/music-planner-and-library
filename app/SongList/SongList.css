@@ -10,6 +10,12 @@
   width: 100%;
 }
 
+.header {
+  padding-top: 0;
+  padding-bottom: 0;
+  background-color: #ddd;
+}
+
 .list {
   position: absolute;
   top: 30px;
@@ -21,18 +27,26 @@
   padding: 0;
 }
 
-.list li {
-  margin: 0;
-  padding: 0;
+.list-item {
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
-.header {
-  background-color: #ddd;
+.list-item:nth-child(even) {
+  background-color: #f6f6f6;
+}
+
+.list-item:hover {
+  background-color: #e6e6e6;
+}
+
+.songProp {
   padding: 5px 0;
+  text-align: center;
 }
 
 .songTitle {
-  background-color: #eee;
+  text-align: left;
 }
 
 @media print {

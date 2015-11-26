@@ -19,18 +19,16 @@ export default class SongList extends React.Component {
   render() {
     let createItem = function(song, index) {
       return (
-        <li key={index + song.id} className='row'>
+        <li key={index + song.id} className={'row list-group-item ' + styles['list-item']}>
           <Link to={`/song/${song.id}`}>
-            <div>
-              <div className={'col-sm-2 ' + styles.songTitle}>{song.title}</div>
-              <div className={'col-sm-1 ' + styles.songToneSet}>{song.toneSet}</div>
-              <div className={'col-sm-1 ' + styles.songScale}>{song.scale}</div>
-              <div className={'col-sm-1 ' + styles.songMElement}>{song.mElement}</div>
-              <div className={'col-sm-1 ' + styles.songMContext}>{song.mContext}</div>
-              <div className={'col-sm-3 ' + styles.songMMotives}>{song.mMotives}</div>
-              <div className={'col-sm-1 ' + styles.songRElement}>{song.rElement}</div>
-              <div className={'col-sm-2 ' + styles.songRMotives}>{song.rMotives}</div>
-            </div>
+            <div className={'col-sm-2 ' + styles.songProp + ' ' + styles.songTitle}>{song.title || '-'}</div>
+            <div className={'col-sm-1 ' + styles.songProp + ' ' + styles.songToneSet}>{song.toneSet || '-'}</div>
+            <div className={'col-sm-1 ' + styles.songProp + ' ' + styles.songScale}>{song.scale || '-'}</div>
+            <div className={'col-sm-1 ' + styles.songProp + ' ' + styles.songMElement}>{song.mElement || '-'}</div>
+            <div className={'col-sm-1 ' + styles.songProp + ' ' + styles.songMContext}>{song.mContext || '-'}</div>
+            <div className={'col-sm-2 ' + styles.songProp + ' ' + styles.songMMotives}>{song.mMotives || '-'}</div>
+            <div className={'col-sm-1 ' + styles.songProp + ' ' + styles.songRElement}>{song.rElement || '-'}</div>
+            <div className={'col-sm-3 ' + styles.songProp + ' ' + styles.songRMotives}>{song.rMotives || '-'}</div>
           </Link>
         </li>
       );
@@ -40,17 +38,19 @@ export default class SongList extends React.Component {
     // console.log(this.props.items);
     return (
       <div className={styles.wrapper}>
-        <div className={styles.header + ' row'}>
-          <div className={'col-sm-2 ' + styles.songTitle}>Title</div>
-          <div className={'col-sm-1 ' + styles.songToneSet}>Tone Set</div>
-          <div className={'col-sm-1 ' + styles.songScale}>Scale</div>
-          <div className={'col-sm-1 ' + styles.songMElement}>M-Element</div>
-          <div className={'col-sm-1 ' + styles.songMContext}>M-Context</div>
-          <div className={'col-sm-2 ' + styles.songMMotives}>M-Motives</div>
-          <div className={'col-sm-1 ' + styles.songRElement}>R-Element</div>
-          <div className={'col-sm-3 ' + styles.songRMotives}>R-Motives</div>
-        </div>
-        <ul className={'col-xs-4 ' + styles.list}>
+        <ul className='list-group'>
+          <li className={styles.header + ' row list-group-item'}>
+            <div className={'col-sm-2 ' + styles.songProp + ' ' + styles.songTitle}>Title</div>
+            <div className={'col-sm-1 ' + styles.songProp + ' ' + styles.songToneSet}>Tone Set</div>
+            <div className={'col-sm-1 ' + styles.songProp + ' ' + styles.songScale}>Scale</div>
+            <div className={'col-sm-1 ' + styles.songProp + ' ' + styles.songMElement}>M-Element</div>
+            <div className={'col-sm-1 ' + styles.songProp + ' ' + styles.songMContext}>M-Context</div>
+            <div className={'col-sm-2 ' + styles.songProp + ' ' + styles.songMMotives}>M-Motives</div>
+            <div className={'col-sm-1 ' + styles.songProp + ' ' + styles.songRElement}>R-Element</div>
+            <div className={'col-sm-3 ' + styles.songProp + ' ' + styles.songRMotives}>R-Motives</div>
+          </li>
+        </ul>
+        <ul className={'list-group ' + styles.list}>
           {items.map(createItem)}
         </ul>
       </div>
