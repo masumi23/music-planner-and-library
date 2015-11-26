@@ -92,6 +92,7 @@ export default class Song extends React.Component {
 					saveSongData={this.saveSongData.bind(this)}
 					togglePrintView={this.togglePrintView.bind(this)}
 					deleteCurrentSong={this.props.deleteCurrentSong}
+          closeCurrentSong={this.props.closeCurrentSong}
 				/>
 
 				<div className={styles.songDetailsPropertiesWrapper + ''}>

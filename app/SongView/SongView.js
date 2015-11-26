@@ -90,6 +90,10 @@ export default class SongView extends React.Component {
     });
   }
 
+  closeCurrentSong() {
+    this.setState({currentSong: null});
+  }
+
   deleteCurrentSong() {
     let warning = 'Are you sure you want to delete this song?\nThis operation' +
                 ' is not recoverable.\n\n' +
@@ -104,7 +108,7 @@ export default class SongView extends React.Component {
     });
     console.log(newList);
     this.setState({items: newList});
-    this.setState({currentSong: null});
+    this.closeCurrentSong();
   }
 
   toggleSort() {
@@ -139,7 +143,8 @@ export default class SongView extends React.Component {
 	    	<Song
 	        currentSong={this.state.currentSong}
 	        updateSong={this.updateCurrentSong.bind(this)}
-	        deleteCurrentSong={this.deleteCurrentSong.bind(this)}/>
+	        deleteCurrentSong={this.deleteCurrentSong.bind(this)}
+          closeCurrentSong={this.closeCurrentSong.bind(this)}/>
       </div>
   	);
   }

@@ -1,3 +1,5 @@
+import styles from './SongButtons.css';
+
 import React from 'react';
 import CopyToClipboard from 'copy-to-clipboard';
 
@@ -27,7 +29,13 @@ export default class SongButtons extends React.Component{
 		  <div>
 			  <div>
 					<div className={this.props.editMode ? 'hidden' : ''}>
-						<button onClick={this.props.toggleEditMode}>
+						<button
+              onClick={this.props.closeCurrentSong}
+              className={styles.closeBtn}>
+                X
+            </button>
+
+            <button onClick={this.props.toggleEditMode}>
 							{this.props.editMode ? 'Editing' : 'Click to Edit'}
 						</button>
 
@@ -35,16 +43,16 @@ export default class SongButtons extends React.Component{
 							{this.props.printView ? 'turn off Print View' : 'Print View'}
 						</button>
 
-						<button onClick={this.props.deleteCurrentSong}>
-							Delete
-						</button>
-
-						<button
-							className="pull-right"
+            <button
 							onClick={this.copySongToClipboard.bind(this)}>
 								Copy to Clipboard
 						</button>
 
+            <button
+              onClick={this.props.deleteCurrentSong}
+              className="pull-right">
+                Delete Song
+            </button>
 					</div>
 				</div>
 
