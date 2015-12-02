@@ -4,7 +4,7 @@ import Rebase from 're-base';
 import _ from 'lodash';
 import Course from '../Course/Course.js'
 
-export default class Courses extends React.Component {
+export default class CourseView extends React.Component {
 
 	constructor(props) {
 	  super(props);
@@ -85,12 +85,12 @@ export default class Courses extends React.Component {
 
 		return (
 			<div>
-				<div>
-        	Hi
+        <div>
+        	Select a course
         	<ul className={'col-xs-4 '}>
           	{this.state.items.map(createItem)}
         	</ul>
-      	</div>
+        </div>
 			</div>
 		);
 	}

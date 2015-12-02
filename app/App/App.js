@@ -1,3 +1,5 @@
+import styles from './App.css';
+
 import React from 'react';
 import SongView from '../SongView/SongView.js';
 import CourseView from '../CourseView/CourseView.js';
@@ -8,22 +10,38 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'songs'
+      songView: true
     };
   }
 
+  toggleCourses() {
+    console.log(this.state);
+    this.setState({songView: !this.state.songView});
+  }
+
   render() {
-    if (this.state.view === 'songs') {
+
+    if (this.state.songView === true) {
       return (
-        <SongView {... this.props}/>
+        <div>
+          <button
+            onClick={this.toggleCourses.bind(this)}
+            className={styles.switchBtn}>
+            toggleCourses
+          </button>
+          <SongView {... this.props}/>
+        </div>
       );
-    } else if (this.state.view === 'courses') {
+    } else {
       return (
-        <CourseView />
-      );
-    } else if (this.state.view === 'tags') {
-      return (
-        <TagView />
+        <div>
+          <button
+            onClick={this.toggleCourses.bind(this)}
+            className={styles.switchBtn}>
+            toggleCourses
+          </button>
+          <CourseView {... this.props}/>
+        </div>
       );
     }
   }
