@@ -9,6 +9,8 @@
     + Organize by Courses
     + Auto-completes songs
     + Courses views
+        * To do
+            - change to routes for plan view
         * General information
             - Doesn't write to song library, only 
         * All songs: list of all songs already planned (and perhaps that I want to use, but not planned yet)
