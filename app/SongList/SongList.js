@@ -37,8 +37,9 @@ export default class SongList extends React.Component {
     let items = this.props.items.filter(this.songPassesFilter.bind(this));
     // console.log(this.props.items);
     return (
+      // perhaps I should do away with this wrapper and let the router import multiple components
       <div className={styles.wrapper}>
-        <ul className='list-group'>
+        <ul className={'list-group ' + styles.list}>
           <li className={styles.header + ' row list-group-item'}>
             <div className={'col-sm-2 ' + styles.songProp + ' ' + styles.songTitle}>Title</div>
             <div className={'col-sm-1 ' + styles.songProp + ' ' + styles.songToneSet}>Tone Set</div>
@@ -49,8 +50,6 @@ export default class SongList extends React.Component {
             <div className={'col-sm-1 ' + styles.songProp + ' ' + styles.songRElement}>R-Element</div>
             <div className={'col-sm-3 ' + styles.songProp + ' ' + styles.songRMotives}>R-Motives</div>
           </li>
-        </ul>
-        <ul className={'list-group ' + styles.list}>
           {items.map(createItem)}
         </ul>
       </div>

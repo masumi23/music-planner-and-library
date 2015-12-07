@@ -2,14 +2,6 @@
   color: #0CD;
 }
 
-.wrapper {
-  position: absolute;
-  top: 30px;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-}
-
 .header {
   padding-top: 0;
   padding-bottom: 0;
@@ -17,14 +9,8 @@
 }
 
 .list {
-  position: absolute;
-  top: 30px;
-  bottom: 0;
-  left: 0;
-  width: 100%;
   overflow: scroll;
-  text-decoration: none;
-  padding: 0;
+  height: 100%;
 }
 
 .list-item {

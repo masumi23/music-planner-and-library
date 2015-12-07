@@ -1,6 +1,7 @@
 import styles from './App.css';
 
 import React from 'react';
+import GlobalNav from '../GlobalNav/GlobalNav.js';
 import SongView from '../SongView/SongView.js';
 import CourseView from '../CourseView/CourseView.js';
 
@@ -16,15 +17,12 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <Link to={`/song`}>
-          Song View
-        </Link>
+      <div className={styles.app}>
+        <GlobalNav className={styles.globalNav}/>
 
-        <Link to={`/courses`}>
-          Course View
-        </Link>
-        {this.props.children}
+        <div className={styles.mainComponent}>
+          {this.props.children}
+        </div>
       </div>
     );
   }

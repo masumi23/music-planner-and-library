@@ -1,4 +1,15 @@
-.switchBtn {
-  right: 100px;
-  position: fixed;
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.globalNav {
+
+}
+
+.mainComponent {
+  flex-grow: 1;
+  overflow-y: auto;
+  height: 0px;
 }

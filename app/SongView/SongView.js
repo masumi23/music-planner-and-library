@@ -127,7 +127,7 @@ export default class SongView extends React.Component {
     );
 
   	return (
-  		<div>
+  		<div className={styles.songView}>
         <div className={styles.nav}>
           <button onClick={this.addSong.bind(this)}>New Song</button>
           <button onClick={this.toggleSort.bind(this)}>Toggle Sort</button>
