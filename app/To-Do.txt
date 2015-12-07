@@ -1,7 +1,21 @@
 - keyboard shortcut for copying songs
+- Put up on github io
+- Export data option
 - Easy to get back to main screen of all songs without refreshing
 - Numbering how many songs are under each tag
 - Search function (automatically highlights the first song and you can navigate up and down with arrow keys. Hit enter to select that song)
+- Auto-complete textualSource
 - Class Planning
-    + Organize by semesters
+    + Organize by Courses
     + Auto-completes songs
+    + Courses views
+        * General information
+            - Doesn't write to song library, only 
+        * All songs: list of all songs already planned (and perhaps that I want to use, but not planned yet)
+        * All songs by individual classes
+        * Flow chart: Macro - knowledge and songs
+            - Plans when to make conscious certain areas of knowledge and when to teach specific songs. Planned by month and by classes.
+        * Flow chart: Checklist
+            - Looking for balance among accross list of all classes. 
+            - Can sort according to balance, and according to class order
+            - Can use to plan specific classes and can include everything neede for the class
