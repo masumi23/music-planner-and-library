@@ -12,7 +12,7 @@ export default class SongList extends React.Component {
     let tagsInSong = song.tagList ? song.tagList.split(',') : [];
     tagsInSong = tagsInSong.map((tag) => tag.trim());
     let unmatchedFilters = _.difference(this.props.filters, tagsInSong);
-    console.log(unmatchedFilters);
+    // console.log(unmatchedFilters);
     return unmatchedFilters.length === 0;
   }
 

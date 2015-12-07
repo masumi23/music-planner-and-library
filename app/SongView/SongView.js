@@ -39,8 +39,7 @@ export default class SongView extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-  	console.log(newProps);
-    let currentSongID = newProps.params.songID;
+  	let currentSongID = newProps.params.songID;
     let currentSong = _.find(this.state.items, function(song){
         return (song.id+'') === currentSongID;
       }.bind(this));

@@ -15,11 +15,13 @@ export default class CourseView extends React.Component {
 	}
 
 	componentWillMount() {
-    this.base = Rebase.createClass('https://songdatabase.firebaseio.com/history');
+    console.log('componentWillMount');
+    this.base = Rebase.createClass('https://songdatabase.firebaseio.com');
   }
 
   componentDidMount() {
-    this.fbRef = this.base.syncState('courses', {
+    console.log('componentDidMount...');
+    this.fbRef = this.base.syncState('history/courses', {
       context: this,
       state: 'items',
       asArray: true
@@ -31,7 +33,8 @@ export default class CourseView extends React.Component {
   }
 //will this work??
   componentWillReceiveProps(newProps) {
-  	console.log(newProps);
+  	console.log('componentWillReceiveProps');
+    console.log(newProps);
     let currentCourseID = newProps.params.courseID;
     let currentCourse = _.find(this.state.items, function(course){
         return (course.id+'') === currentCourseID;
@@ -74,7 +77,7 @@ export default class CourseView extends React.Component {
   }
 
 	render () {
-		console.log("Course View");
+		console.log("Render Course View");
 		var createItem = function(course, index) {
       return (
         <li key={index + course.id}>
@@ -91,6 +94,7 @@ export default class CourseView extends React.Component {
           	{this.state.items.map(createItem)}
         	</ul>
         </div>
+        <Course/>
 			</div>
 		);
 	}
