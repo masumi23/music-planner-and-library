@@ -79,28 +79,13 @@ export default class SongDetailsProperties extends React.Component {
 		  		<div className={'col-xs-12 ' + styles.scoreNotationInput + (this.props.editMode ? '': ' hidden')}>
 			  		{this.props.makeContentEditable('scoreNotation')}
 		  		</div>
-					<div className="col-sm-4">
-						<h3>Most Important</h3>
-						{self.makeContentEditableChunks.call(self, [
-							'startingPitch',
-							'title',
-							'url',
-							'procedure',
-							'tagList'
-						])}
-						<img
-							src={currentSong.imgUrl}
-							className={currentSong.imgUrl ? '' : 'hidden'}
-						/>
-
-					</div>
 
 					<div className="col-sm-4">
 						<h3>Analysis Properties</h3>
 						{self.makeContentEditableChunks.call(self, [
+							'startingPitch',
 							'toneSet',
 							'scale',
-							'hemitonic',
 							'meter',
 							'tonalCenter',
 							'rhythmSet',
@@ -113,8 +98,7 @@ export default class SongDetailsProperties extends React.Component {
 							'measures',
 							'range',
 							'gradeFloor',
-							'gradeCeil',
-							'altTitle'
+							'gradeCeil'
 						])}
 					</div>
 
@@ -133,12 +117,17 @@ export default class SongDetailsProperties extends React.Component {
 							'varientLink'
 						])}
 
-						<h3>Other Properties</h3>
+					</div>
+					<div className="col-sm-4">
+
+						<h3>General</h3>
 						{self.makeContentEditableChunks.call(self, [
 
-							'generalNotes',
-							'lyrics',
 							'textualSource',
+							'lyrics',
+							'tagList',
+							'url',
+							'generalNotes',
 							'otherSources',
 							'informantPerformer',
 							'origin',
@@ -149,6 +138,11 @@ export default class SongDetailsProperties extends React.Component {
 							'subSubject',
 							'altTitle'
 						])}
+						<img
+							src={currentSong.imgUrl}
+							className={currentSong.imgUrl ? '' : 'hidden'}
+						/>
+
 					</div>
 				</div>
 		  );
