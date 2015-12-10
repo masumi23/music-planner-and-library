@@ -4,28 +4,25 @@ var webpack = require('webpack');
 // var node_modules = path.resolve(__dirname, 'node_modules');
 // var pathToReact = path.resolve(node_modules, 'react/dist/react-with-addons.js');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-// var HtmlWebpackPlugin = require("html-webpack-plugin");
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'eval',
-  entry: [
-    'webpack-hot-middleware/client',
-    './app/main.js'
-  ],
+  entry: path.resolve(__dirname, 'app/main.js'),
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/static/'
+    publicPath: '/'
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new ExtractTextPlugin('styles.css'),
-    // new HtmlWebpackPlugin({
-    //   title: 'Custom template',
-    //   template: 'index.html', // Load a custom template
-    //   inject: 'body' // Inject all scripts into the body
-    // })
+    new HtmlWebpackPlugin({
+      title: 'Custom template',
+      template: 'index.html', // Load a custom template
+      inject: 'body' // Inject all scripts into the body
+    })
   ],
   module: {
     loaders: [{
