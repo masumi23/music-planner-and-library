@@ -4,6 +4,7 @@ import React from 'react';
 import Firebase from 'firebase';
 import Rebase from 're-base';
 import _ from 'lodash';
+import ContentEditable from '../ContentEditable/ContentEditable.js';
 
 export default class MacroView extends React.Component {
 
@@ -75,14 +76,32 @@ export default class MacroView extends React.Component {
         <td className={styles.td}>{nugget.name}</td>
         {classes.map(classInstance => {
           let nuggets = classInstance.nuggets;
-          let nid = nugget.nid;
+          let nuggetID = nugget.nid;
           return (
             <td className={styles.td}>
-              {(nuggets && nuggets[nid]) || (`class #${classInstance.id} - nugget #${nid}`)}
+              {this.makeContentEditable.call(this, classInstance, nuggetID)}
             </td>
           )
         })}
       </tr>
     );
+  }
+
+  makeContentEditable(classInstance, nuggetID) {
+    let key = classInstance.id + '-' + nuggetID;
+    // console.log(this.state.currentCourse);
+    // let classInstance = this.state.currentCourse.classes[classID];
+    let nugget = classInstance.nuggets[nuggetID];
+
+    let elem = (
+      <ContentEditable
+        contentEditable={true}
+        html={(nugget && nugget.text) || ''}
+        keyName={key}
+        // onChange={this.handleChange.bind(this)}
+      />
+    );
+
+    return elem;
   }
 }
