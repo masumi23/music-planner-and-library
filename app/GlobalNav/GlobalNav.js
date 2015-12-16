@@ -8,6 +8,10 @@ export default class App extends React.Component {
   render() {
     return (
       <nav {...this.props}>
+        <Link to={`/macro`}>
+          Macro-Plan
+        </Link>
+
         <Link to={`/song`}>
           Song View
         </Link>
