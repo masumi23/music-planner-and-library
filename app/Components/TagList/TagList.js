@@ -14,7 +14,11 @@ export default class SongView extends React.Component {
       return _.union(tagList, tagsInSong);
     }, []);
 
-    return tags;
+    let trimmedTags = tags
+      .map((tag) => tag.trim()) // trim white-space
+      .filter((tag) => !!tag); // remove empty tags due to trailing commas
+
+    return _.uniq(trimmedTags);
   }
 
   handleClick(e) {
