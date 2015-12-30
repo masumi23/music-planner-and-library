@@ -2,7 +2,7 @@ import React from 'react';
 import Firebase from 'firebase';
 import Rebase from 're-base';
 import _ from 'lodash';
-import Course from '../Course/Course.js'
+import Course from '../Course/Course.js';
 
 export default class CourseView extends React.Component {
 

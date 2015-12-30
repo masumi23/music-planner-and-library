@@ -5,6 +5,8 @@ import Firebase from 'firebase';
 import Rebase from 're-base';
 import _ from 'lodash';
 import ContentEditable from '../ContentEditable/ContentEditable.js';
+import update from 'react-addons-update';
+
 
 export default class MacroView extends React.Component {
 
@@ -97,11 +99,28 @@ export default class MacroView extends React.Component {
       <ContentEditable
         contentEditable={true}
         html={(nugget && nugget.text) || ''}
-        keyName={key}
-        // onChange={this.handleChange.bind(this)}
+        classId={classInstance.id}
+        class={this.state.courses[classInstance.id]}
+        onChange={this.handleChange}
       />
     );
 
     return elem;
+  }
+
+  handleChange(e) {
+    // how do I set state properly with something nested so deep?
+    // Are there best practices I can learn from?
+    //
+    // clone current song so we don't mutate state directly
+    console.log(this);
+    let classId = this.classId;
+    console.log(this.props.class, classId);
+
+
+
+    // let currSong = Object.assign({}, this.state.currentSong);
+    // currSong[e.target.key] = e.target.value;
+    // this.setState({currentSong: currSong});
   }
 }

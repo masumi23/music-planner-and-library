@@ -16,12 +16,16 @@ export default class App extends React.Component {
   }
 
   render() {
+    let childrenWithProps = React.Children.map(this.props.children, (child) => {
+      return React.cloneElement(child, { ... this.props });
+    });
+
     return (
       <div className={styles.app}>
         <GlobalNav className={styles.globalNav}/>
 
         <div className={styles.mainComponent}>
-          {this.props.children}
+          {childrenWithProps}
         </div>
       </div>
     );
