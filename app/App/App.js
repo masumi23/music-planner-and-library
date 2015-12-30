@@ -1,9 +1,9 @@
 import styles from './App.css';
 
 import React from 'react';
-import GlobalNav from '../GlobalNav/GlobalNav.js';
-import SongView from '../SongView/SongView.js';
-import CourseView from '../CourseView/CourseView.js';
+import GlobalNav from './../Components/GlobalNav/GlobalNav.js';
+import SongView from './../Containers/SongView/SongView.js';
+import CourseView from './../Containers/CourseView/CourseView.js';
 
 import { Link } from 'react-router';
 

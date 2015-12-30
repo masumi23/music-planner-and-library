@@ -3,8 +3,8 @@
 import styles from './SongView.css';
 
 import React from 'react';
-import SongList from '../SongList/SongList.js';
-import TagList from '../TagList/TagList.js';
+import SongList from '../../Components/SongList/SongList.js';
+import TagList from '../../Components/TagList/TagList.js';
 import Song from '../Song/Song.js';
 import Firebase from 'firebase';
 import Rebase from 're-base';

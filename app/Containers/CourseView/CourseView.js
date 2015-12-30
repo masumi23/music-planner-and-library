@@ -2,7 +2,6 @@ import React from 'react';
 import Firebase from 'firebase';
 import Rebase from 're-base';
 import _ from 'lodash';
-import Course from '../Course/Course.js'
 
 export default class CourseView extends React.Component {
 
@@ -94,7 +93,6 @@ export default class CourseView extends React.Component {
           	{this.state.items.map(createItem)}
         	</ul>
         </div>
-        <Course/>
 			</div>
 		);
 	}

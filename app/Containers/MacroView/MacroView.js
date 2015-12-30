@@ -4,7 +4,7 @@ import React from 'react';
 import Firebase from 'firebase';
 import Rebase from 're-base';
 import _ from 'lodash';
-import ContentEditable from '../ContentEditable/ContentEditable.js';
+import ContentEditable from '../../Components/ContentEditable/ContentEditable.js';
 
 export default class MacroView extends React.Component {
 

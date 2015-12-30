@@ -1,9 +1,9 @@
 import styles from './Song.css';
 
 import React from 'react';
-import SongButtons from '../SongButtons/SongButtons.js';
-import SongDetailsProperties from '../SongDetailsProperties/SongDetailsProperties.js';
-import ContentEditable from '../ContentEditable/ContentEditable.js';
+import SongButtons from '../../Components/SongButtons/SongButtons.js';
+import SongDetailsProperties from '../../Components/SongDetailsProperties/SongDetailsProperties.js';
+import ContentEditable from '../../Components/ContentEditable/ContentEditable.js';
 
 export default class Song extends React.Component {
 

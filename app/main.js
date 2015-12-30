@@ -1,8 +1,8 @@
 import React from 'react/addons.js';
 import App from './App/App.js';
-import SongView from './SongView/SongView.js';
-import CourseView from './CourseView/CourseView.js';
-import MacroView from './MacroView/MacroView.js';
+import SongView from './Containers/SongView/SongView.js';
+import CourseView from './Containers/CourseView/CourseView.js';
+import MacroView from './Containers/MacroView/MacroView.js';
 import './main.css';
 import { Router, Route, Link } from 'react-router';
 
