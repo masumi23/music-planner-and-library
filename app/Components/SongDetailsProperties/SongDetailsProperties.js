@@ -9,7 +9,7 @@ export default class SongDetailsProperties extends React.Component {
 
   makeContentEditableChunks(keys) {
   	let chunks = keys.map((key) => (
-  		<div className={this.props.currentSong[key] || this.props.editMode ? '': 'hidden'}>
+  		<div key={key} className={this.props.currentSong[key] || this.props.editMode ? '': 'hidden'}>
   			<h4>{key}</h4>
 	  		{this.props.makeContentEditable(key)}
 			</div>
@@ -19,7 +19,7 @@ export default class SongDetailsProperties extends React.Component {
   }
 
   render () {
-  	console.debug('render Song Details')
+  	console.debug('render Song Details');
   	let self = this;
   	let currentSong = this.props.currentSong;
 
