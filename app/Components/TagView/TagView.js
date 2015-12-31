@@ -13,15 +13,15 @@ import _ from 'lodash';
 import TagView from '../TagView/TagView.js'
 
 export default class TagView extends React.Component {
-	constructor(props) {
-	  super(props);
-	  this.state = {
-	    items: [],
-	    currentTag: null
-	  };
-	}
+  constructor(props) {
+    super(props);
+    this.state = {
+      items: [],
+      currentTag: null
+    };
+  }
 
-	componentWillMount() {
+  componentWillMount() {
     this.base = Rebase.createClass('https://songdatabase.firebaseio.com/');
   }
 
@@ -38,26 +38,26 @@ export default class TagView extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-  	console.log(newProps);
+    console.log(newProps);
 
     });
   }
 
-	makeTagList() {
+  makeTagList() {
 
-	}
+  }
 
-	render () {
-  	return (
-  		<div>
-	  		<TagList/>
+  render () {
+    return (
+      <div>
+        <TagList/>
 
-	    	<Tag
-	        currentTag={this.state.currentTag}
-	        //need to create the following functions
-	        updateTag={this.updateCurrentTag.bind(this)}
-	        deleteCurrentTag={this.deleteCurrentTag.bind(this)}/>
+        <Tag
+          currentTag={this.state.currentTag}
+          //need to create the following functions
+          updateTag={this.updateCurrentTag.bind(this)}
+          deleteCurrentTag={this.deleteCurrentTag.bind(this)}/>
       </div>
-  	);
+    );
   }
 }

@@ -5,15 +5,15 @@ import _ from 'lodash';
 
 export default class CourseView extends React.Component {
 
-	constructor(props) {
-	  super(props);
-	  this.state = {
-	    items: [],
-	    currentCourse: null
-	  };
-	}
+  constructor(props) {
+    super(props);
+    this.state = {
+      items: [],
+      currentCourse: null
+    };
+  }
 
-	componentWillMount() {
+  componentWillMount() {
     console.log('componentWillMount');
     this.base = Rebase.createClass('https://songdatabase.firebaseio.com');
   }
@@ -32,7 +32,7 @@ export default class CourseView extends React.Component {
   }
 //will this work??
   componentWillReceiveProps(newProps) {
-  	console.log('componentWillReceiveProps');
+    console.log('componentWillReceiveProps');
     console.log(newProps);
     let currentCourseID = newProps.params.courseID;
     let currentCourse = _.find(this.state.items, function(course){
@@ -75,9 +75,9 @@ export default class CourseView extends React.Component {
     });
   }
 
-	render () {
-		console.log("Render Course View");
-		var createItem = function(course, index) {
+  render () {
+    console.log("Render Course View");
+    var createItem = function(course, index) {
       return (
         <li key={index + course.id}>
           {course.className}
@@ -85,16 +85,16 @@ export default class CourseView extends React.Component {
       );
     };
 
-		return (
-			<div>
+    return (
+      <div>
         <div>
-        	Select a course
-        	<ul className={'col-xs-4 '}>
-          	{this.state.items.map(createItem)}
-        	</ul>
+          Select a course
+          <ul className={'col-xs-4 '}>
+            {this.state.items.map(createItem)}
+          </ul>
         </div>
-			</div>
-		);
-	}
+      </div>
+    );
+  }
 
 }
