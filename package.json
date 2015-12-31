@@ -46,8 +46,9 @@
     "extract-text-webpack-plugin": "^0.8.2",
     "firebase": "^2.2.9",
     "lodash": "^3.10.1",
+    "mousetrap": "^1.5.3",
     "re-base": "^1.1.2",
-    "react": "^0.13.0",
+    "react": "^0.14.5",
     "react-router": "^1.0.0-rc1"
   }
 }

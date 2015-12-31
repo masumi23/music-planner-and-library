@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 export default class ContentEditable extends React.Component {
   constructor() {
@@ -16,18 +17,18 @@ export default class ContentEditable extends React.Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    return nextProps.html !== React.findDOMNode(this).innerHTML ||
+    return nextProps.html !== ReactDOM.findDOMNode(this).innerHTML ||
            this.props.contentEditable !== nextProps.contentEditable;
   }
 
   componentDidUpdate() {
-    if ( this.props.html !== React.findDOMNode(this).innerHTML ) {
-     React.findDOMNode(this).innerHTML = this.props.html;
+    if ( this.props.html !== ReactDOM.findDOMNode(this).innerHTML ) {
+     ReactDOM.findDOMNode(this).innerHTML = this.props.html;
     }
   }
 
   emitChange(evt) {
-    var html = React.findDOMNode(this).innerText;
+    var html = ReactDOM.findDOMNode(this).innerText;
     if (this.props.onChange && html !== this.lastHtml) {
       evt.target = { value: html, key: this.props.keyName };
       this.props.onChange(evt);

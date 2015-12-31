@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import _ from 'lodash';
 
 export default class Score extends React.Component {
@@ -25,7 +26,7 @@ export default class Score extends React.Component {
   _renderScore() {
     let startTime = Date.now();
 
-    let domNode = React.findDOMNode(this.refs.score);
+    let domNode = ReactDOM.findDOMNode(this.refs.score);
     window.ABCJS.renderAbc(domNode, this.props.scoreNotation);
 
     let duration = Date.now() - startTime;
