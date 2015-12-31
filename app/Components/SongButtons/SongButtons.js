@@ -2,8 +2,17 @@ import styles from './SongButtons.css';
 
 import React from 'react';
 import CopyToClipboard from 'copy-to-clipboard';
+import Mousetrap from 'mousetrap';
 
-export default class SongButtons extends React.Component{
+export default class SongButtons extends React.Component {
+
+  componentDidMount() {
+    Mousetrap.bind(['ctrl+c'], this.copySongToClipboard.bind(this));
+  }
+
+  componentWillUnmount() {
+    Mousetrap.unbind(['ctrl+c'], this.copySongToClipboard.bind(this));
+  }
 
   copySongToClipboard() {
   	let currentSong = this.props.currentSong;
@@ -20,6 +29,8 @@ export default class SongButtons extends React.Component{
   		.join('\t');
 
 		CopyToClipboard(textToCopy);
+
+    // TODO add "copied" toast
   }
 
   render() {
