@@ -6,8 +6,6 @@ import React from 'react';
 import SongList from '../../Components/SongList/SongList.js';
 import TagList from '../../Components/TagList/TagList.js';
 import Song from '../Song/Song.js';
-import Firebase from 'firebase';
-import Rebase from 're-base';
 import _ from 'lodash';
 
 export default class SongView extends React.Component {
@@ -15,82 +13,72 @@ export default class SongView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: [],
       currentSong: null,
       sort: false,
       filters: []
     };
   }
 
-  componentWillMount() {
-    this.base = Rebase.createClass('https://songdatabase.firebaseio.com/');
-  }
-
-  componentDidMount() {
-    this.fbRef = this.base.syncState('songList', {
-      context: this,
-      state: 'items',
-      asArray: true
-    });
-  }
-
-  componentWillUnmount(){
-    this.base.removeBinding(this.fbRef);
-  }
-
   componentWillReceiveProps(newProps) {
+    console.log(newProps);
     let currentSongID = newProps.params.songID;
-    let currentSong = _.find(this.state.items, function(song){
+    let currentSong = _.find(this.props.songList, function(song){
         return (song.id+'') === currentSongID;
       }.bind(this));
 
-    this.setState({
-      currentSongID,
-      currentSong
-    });
+    // TODO: implement flux
+    // this.setState({
+    //   currentSongID,
+    //   currentSong
+    // });
   }
 
   updateCurrentSong(updatedSong) {
-    console.log(this);
-    this.setState({currentSong: updatedSong});
+
+    // TODO: implement flux
+    // this.setState({currentSong: updatedSong});
 
     // clone list and update current song in list
-    let i = _.findIndex(this.state.items, this.state.currentSong);
+    let i = _.findIndex(this.props.songList, this.state.currentSong);
     let diff = {};
     diff[i] = {$merge: updatedSong};
 
-    console.log("update song " + this.state.items[i].title);
-    let newList = React.addons.update(this.state.items, diff);
+    console.log("update song " + this.props.songList[i].title);
+    let newList = React.addons.update(this.props.songList, diff);
 
-    this.setState({items: newList});
+    // TODO: implement flux
+    // this.setState({items: newList});
   }
 
   addSong() {
     console.log(this);
     let newSong = {
       title: 'Hi!',
-      id: this.state.items[this.state.items.length - 1].id+1
+      id: this.props.songList[this.props.songList.length - 1].id+1
     };
 
-    let newList = React.addons.update(this.state.items, {
+    let newList = React.addons.update(this.props.songList, {
       $push: [newSong]
     });
 
-    this.setState({
-      items: newList,
-      currentSong: newSong
-    });
+    // TODO: implement flux
+    // this.setState({
+    //   items: newList,
+    //   currentSong: newSong
+    // });
   }
 
   applyFilters(filters) {
-    console.log("filter set: " + filters);
-    this.setState({
-      filters: filters
-    });
+
+    // TODO: implement flux
+    // this.setState({
+    //   filters: filters
+    // });
   }
 
   closeCurrentSong() {
-    this.setState({currentSong: null});
+    // TODO: implement flux
+    // this.setState({currentSong: null});
   }
 
   deleteCurrentSong() {
@@ -101,27 +89,30 @@ export default class SongView extends React.Component {
       return false;
     }
 
-    let i = _.findIndex(this.state.items, this.state.currentSong);
-    let newList = React.addons.update(this.state.items, {
+    let i = _.findIndex(this.props.songList, this.state.currentSong);
+    let newList = React.addons.update(this.props.songList, {
       $splice: [[i,1]]
     });
     console.log(newList);
-    this.setState({items: newList});
+
+    // TODO: implement flux
+    // this.setState({items: newList});
     this.closeCurrentSong();
   }
 
   toggleSort() {
-    console.log(this);
-    this.setState({
-      'sort': !this.state.sort
-    });
+
+    // TODO: implement flux
+    // this.setState({
+    //   'sort': !this.state.sort
+    // });
   }
 
   render () {
 
     let tagList = (
       <TagList
-        songs={this.state.items}
+        songs={this.props.songList}
         applyFilters={this.applyFilters.bind(this)}
       />
     );
@@ -135,7 +126,7 @@ export default class SongView extends React.Component {
         </div>
 
         <SongList
-          items={this.state.items}
+          songList={this.props.songList}
           filters={this.state.filters}
           addSong={this.addSong.bind(this)}/>
 

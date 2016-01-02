@@ -34,8 +34,8 @@ export default class SongList extends React.Component {
       );
     };
 
-    let items = this.props.items.filter(this.songPassesFilter.bind(this));
-    // console.log(this.props.items);
+    let items = this.props.songList.filter(this.songPassesFilter.bind(this));
+
     return (
       // perhaps I should do away with this wrapper and let the router import multiple components
       <div className={styles.wrapper}>
