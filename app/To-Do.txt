@@ -5,59 +5,72 @@ Library
     - Search function (automatically highlights the first song and you can navigate up and down with arrow keys. Hit enter to select that song)
     - Auto-complete textualSource
 Class Planning 
-    - General
-        - Organize by Courses
-        - Auto-completes songs
-        - change to routes for plan view
     - Specific Course information
-        + Date generator
-            + Start Date
-            + End Date
-            + Class intervals
-            + Breaks
-        + Students
+        + Knowledge items
+            * Knowledge items are categorized as "rhythmic", "melodic", "theory", "skills", etc.
         + All songs
             + list of all songs already planned (and perhaps that I want to use, but not planned yet)
-        + Knowledge items
-        + Classes - should they be identified by number rather than date? Just in case I am absent or a course doesn't happen on a certain date?
-    - Flow chart: Macro - knowledge and songs
+        + Classes - identified by number rather than date
+    - 1) Flow chart: Macro
         - Description
-            - Plans when to make conscious certain areas of knowledge. Planned by classes.
-            + Display classes where the x axis is the date of the class and the y access is a list of knowledge items.
-            + Information written at the intersection will be entered as the behavioral objective the knowledge item and class associated with that date
-            + Intersections are colored if they are MC or an introduction of a song.
+            + x axis is the class
+            + y access is a list of knowledge items "nuggets".
+            + Information written at the intersection will be stored as the behavioral objective for that nugget and class
         - Later features
+            + Intersections are colored if they are the date a nugget is made conscious
+            + Students
+            + Date generator
+                + Start Date
+                + End Date
+                + Class intervals
+                + Breaks
             + Planned by month
             + Drag and drop information at intersections
             + Add songs
             + Song BO can link to knowledge item's BO's if they overlap
-    - Flow chart: Checklist
+    - 2) Flow chart: Checklist
         - Description
-            - Looks for balance among accross list of all classes. 
-            - x axis is the date and y axis is a list of categories to cover.
-            - The intersection is descriptive
-                + Multiple fields to fill:
-                    * Song or activity name ex. Liza Jane or tone ladder
-                        - There is a button group to chose whether it is a song or an activity. Songs come from a drop down list.
-                    * Specification for the category ex. which knowledge item is addressed if the category is "rhythmic" or melodic preparation".
-                    * behavioral objective
-            - When entering songs, they are chosen from the song library. If not in the library, an alert will show up
+            - x axis is the class
+            - y axis is a list of categories to cover.
+                + Songs for Singing
+                + Games/Movement
+                + New Song/ Game
+                + Rhythmic: Prep
+                + Rhythmic: Practice
+                + Melodic: Prepare
+                + Melodic: Practice
+                + Part-Work
+                + Reading/ Sight-singing
+                + Writing/ Dictation
+                + Listening
+                + Form, Inner Hearing, Improv, Comp, Other
+            - The intersection conatains multiple fields:
+                * Song (ex. Liza Jane) or activity (ex. tone ladder)
+                    - There is a button to chose whether it is a song or an activity. Songs come from a drop down list.
+                * nugget (Placed in category Rhymic: Prep - can be entered in the macro-planning view)
+                * behavioral objective (can be entered in macro-planning view)
         - Later feature
+            - Ability to enter new songs on the spot
             - Right click (or something else) on songs to see their stats:
                 + How many times used in the course
                 + Last time used
                 + % of classes it is in
             - When filling in songs associated with teaching an element can get suggestions which will show a small list of songs that are good for teaching that element (sorted from the library, prioritizing songs thats that have already been selected for the course)
             + Sort y access according to catagories, or according to class order (y access is no longer the category but the song order)
-    - Single Class
+    - 3) Single Class
         + Description
-            * x axis are fields for the specific songs
-            * y axis are songs listed in order of presentation
-                * shape, 
-                * props, 
-                * transition, 
-                * full description, 
+            * x axis is fields for the specific songs (same as from checklist view and song library)
+                * CSP
+                * tone set
+                * props
+                * song title 
+                * [checklist category]: [nugget] 
+                * behavioral objective
+                * full description (optional - Review, Point, Reinforcement format)
+                * shape
+                * transition 
                 * reflection
+            * y axis is songs/ activities listed in order of presentation
     - Views for outside use
         + Print view - print the lesson plan ex. for student or teacher observation
         + Parent course view - view the course where the x axis displays class dates and the y axis shows the song order. Each song is hyperlinked to their entry in the song library. The song library view only shows the song title, attribution, general notes, and music - but not analysis.
