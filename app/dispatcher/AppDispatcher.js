@@ -1,8 +1,8 @@
 import {Dispatcher} from 'flux';
 
-var assign = require('object-assign');
+import assign from 'object-assign';
 
-var AppDispatcher = assign({}, Dispatcher.prototype, {
+var AppDispatcher = assign(new Dispatcher(), {
 
   /**
    * A bridge function between the views and the dispatcher, marking the action

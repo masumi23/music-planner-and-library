@@ -22,15 +22,20 @@ export default class SongView extends React.Component {
   componentWillReceiveProps(newProps) {
     console.log(newProps);
     let currentSongID = newProps.params.songID;
-    let currentSong = _.find(this.props.songList, function(song){
-        return (song.id+'') === currentSongID;
+    let currentSongArrayID;
+    let currentSong = _.find(this.props.songList, function(song, i){
+        if ((song.id+'') === currentSongID) {
+          currentSongArrayID = i;
+          return true;
+        }
       }.bind(this));
 
     // TODO: implement flux
-    // this.setState({
-    //   currentSongID,
-    //   currentSong
-    // });
+    this.setState({
+      currentSongID,
+      currentSongArrayID,
+      currentSong
+    });
   }
 
   updateCurrentSong(updatedSong) {
@@ -131,7 +136,9 @@ export default class SongView extends React.Component {
           addSong={this.addSong.bind(this)}/>
 
         <Song
+          songID={this.props.params.songID}
           currentSong={this.state.currentSong}
+          currentSongArrayID={this.state.currentSongArrayID}
           updateSong={this.updateCurrentSong.bind(this)}
           deleteCurrentSong={this.deleteCurrentSong.bind(this)}
           closeCurrentSong={this.closeCurrentSong.bind(this)}/>

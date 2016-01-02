@@ -1,6 +1,8 @@
 import styles from './Song.css';
 
 import React from 'react';
+import Actions from '../../actions/Actions';
+
 import SongButtons from '../../Components/SongButtons/SongButtons.js';
 import SongDetailsProperties from '../../Components/SongDetailsProperties/SongDetailsProperties.js';
 import ContentEditable from '../../Components/ContentEditable/ContentEditable.js';
@@ -38,7 +40,18 @@ export default class Song extends React.Component {
 
   saveSongData() {
     console.debug('Saving song data!', this.state.currentSong);
-    this.props.updateSong(this.state.currentSong);
+    // this.props.updateSong(this.state.currentSong);
+    console.log(this.props);
+    Actions.updateSong({
+      id: this.props.currentSongArrayID,
+      song: this.state.currentSong
+    });
+
+    // AppDispatcher.dispatch({
+    //   eventName: 'updateSong',
+    //   song: this.state.currentSong
+    // });
+
     this.toggleEditMode();
   }
 

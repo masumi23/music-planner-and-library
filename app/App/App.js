@@ -16,10 +16,13 @@ import Firebase from 'firebase';
 import Rebase from 're-base';
 // import _ from 'lodash';
 
+import Actions from '../actions/Actions';
+
 
 var CHANGE_EVENT = 'change';
 
 function makeStore(app) {
+  window.app = app;
 
   return assign({}, EventEmitter.prototype, {
 
@@ -32,7 +35,7 @@ function makeStore(app) {
     },
 
     emitChange: function() {
-      this.emit('change');
+      this.emit(CHANGE_EVENT);
     },
 
     /**
@@ -47,7 +50,43 @@ function makeStore(app) {
      */
     removeChangeListener: function(callback) {
       this.removeListener(CHANGE_EVENT, callback);
-    }
+    },
+
+    dispatcherIndex: AppDispatcher.register(function(payload) {
+      console.log('payload', payload);
+      var action = payload.action;
+      var text;
+
+      switch(action.actionType) {
+        case 'doop':
+          console.log(action.num);
+          app.setState({foo: action.num});
+          app.Store.emitChange();
+          break;
+
+        case 'updateSong':
+          var songList = app.state.songList.slice();
+          songList[payload.action.id] = payload.action.song;
+
+          app.setState({ songList: songList });
+          console.log('---');
+          console.log(songList[payload.action.id]);
+          app.Store.emitChange();
+          break;
+
+        case 'addSong':
+          app.Store.emitChange();
+          break;
+
+        case 'deleteSong':
+          app.Store.emitChange();
+          break;
+
+
+      }
+
+      return true; // No errors. Needed by promise in Dispatcher.
+    })
   });
 }
 
@@ -57,13 +96,14 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      songList: []
+      songList: [],
+      foo: 0
     };
   }
 
   componentDidMount() {
     this.Store = makeStore(this);
-    this.Store.addChangeListener(this._onChange);
+    this.Store.addChangeListener(this._onChange.bind(this));
 
     window.store = this.Store;
 
@@ -74,10 +114,22 @@ export default class App extends React.Component {
       state: 'songList',
       asArray: true
     });
+
+    this.fbRef = this.base.syncState('foo', {
+      context: this,
+      state: 'foo'
+    });
+
+    // sonar ping
+    // setInterval(function(){
+    //   console.log('sending...');
+    //   Actions.doop(Math.random());
+    // }, 2000);
+
   }
 
   componentWillUnmount() {
-    this.Store.removeChangeListener(this._onChange);
+    this.Store.removeChangeListener(this._onChange.bind(this));
     this.base.removeBinding(this.fbRef);
   }
 
@@ -95,6 +147,6 @@ export default class App extends React.Component {
   }
 
   _onChange() {
-    this.setState(Store.getAll());
+    this.setState(this.Store.getAll());
   }
 }
