@@ -1,27 +1,42 @@
 import styles from './MacroView.css';
 
 import React from 'react';
-import Firebase from 'firebase';
-import Rebase from 're-base';
 import _ from 'lodash';
+
+import Actions from '../../actions/Actions';
 import ContentEditable from '../../Components/ContentEditable/ContentEditable.js';
+
 
 export default class MacroView extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      courses: null
+      currentCourse: null,
+      classes: []
     };
   }
 
+  componentDidMount() {
+    this.componentWillReceiveProps(this.props);
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (!newProps.courses || !newProps.classes) return false;
+
+    let courses = newProps.courses;
+    let currentCourse = this.state.currentCourse || _.first(courses);
+    let classIDs = currentCourse.classes;
+    let classes = newProps.classes.filter((c) => _.includes(classIDs, c.id));
+    this.setState({
+      classes,
+      currentCourse
+    });
+  }
+
   render () {
-    let courses = this.state.courses;
-    if (!courses) return null;
+    if (!this.state.classes) return null;
 
-    this.state.currentCourse = this.state.currentCourse || _.first(courses);
-
-    let classes = this.state.currentCourse.classes;
     let nuggets = [
       { nid: 0, name: 'Melody: Low La and Low So'},
       { nid: 1, name: 'Rhythm: Synco-pa'},
@@ -43,26 +58,28 @@ export default class MacroView extends React.Component {
 
     return (
       <table>
-        <tr>
-          <th className={styles.th}></th>
-          {classes.map(classInstance => <th className={styles.th}>{classInstance.date}</th>)}
-        </tr>
-        {nuggets.map(this.makeNuggetRow.bind(this))}
+        <tbody>
+          <tr>
+            <th className={styles.th}></th>
+            {this.state.classes.map(classInstance => <th className={styles.th} key={classInstance.id+'-heading'}>{classInstance.date}</th>)}
+          </tr>
+          {nuggets.map(this.makeNuggetRow.bind(this))}
+        </tbody>
       </table>
     )
   }
 
   makeNuggetRow (nugget) {
     let courses = this.state.courses;
-    let classes = _.first(courses).classes;
+    let classes = this.state.classes;
+    let nuggetID = nugget.nid;
     return (
-      <tr>
+      <tr key={nugget.nid}>
         <td className={styles.td}>{nugget.name}</td>
         {classes.map(classInstance => {
           let nuggets = classInstance.nuggets;
-          let nuggetID = nugget.nid;
           return (
-            <td className={styles.td}>
+            <td className={styles.td} key={`${classInstance.id}-${nuggetID}`}>
               {this.makeContentEditable.call(this, classInstance, nuggetID)}
             </td>
           )
@@ -72,7 +89,7 @@ export default class MacroView extends React.Component {
   }
 
   makeContentEditable(classInstance, nuggetID) {
-    let key = classInstance.id + '-' + nuggetID;
+    let key = 'ce-' + classInstance.id + '-' + nuggetID;
     // console.log(this.state.currentCourse);
     // let classInstance = this.state.currentCourse.classes[classID];
     let nugget = classInstance.nuggets[nuggetID];
@@ -81,11 +98,24 @@ export default class MacroView extends React.Component {
       <ContentEditable
         contentEditable={true}
         html={(nugget && nugget.text) || ''}
-        keyName={key}
-        // onChange={this.handleChange.bind(this)}
+        key={key}
+        onChange={this.handleChange.bind(this, classInstance, nuggetID)}
       />
     );
 
     return elem;
+  }
+
+  handleChange(classInstance, nuggetID, e) {
+    console.log(this, classInstance, nuggetID, e);
+    let classID = _.findIndex(this.state.classes, classInstance);
+    let classClone = _.clone(classInstance)
+    classClone.nuggets[nuggetID].text = e.target.value;
+    console.log(classID, classClone);
+
+    Actions.updateClass({
+      classID,
+      classInstance: classClone
+    });
   }
 }

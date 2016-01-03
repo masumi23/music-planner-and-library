@@ -71,6 +71,11 @@ function makeStore(app) {
           app.Store.emitChange();
           break;
 
+        case 'updateClass':
+          app.base.post(`classes/${action.classID}`, {
+            data: action.classInstance
+          });
+          break;
 
       }
 

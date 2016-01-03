@@ -3,7 +3,8 @@ var AppDispatcher = require('../dispatcher/AppDispatcher');
 var Actions = {
 
   /**
-   * @param  {obj} action {id, song}
+   * @param  {id} number
+   * @param  {song} song object
    */
   updateSong: function(action) {
     AppDispatcher.handleViewAction({
@@ -31,7 +32,19 @@ var Actions = {
       actionType: 'deleteSong',
       id: id
     });
-  }
+  },
+
+  /**
+   * @param  {classID} number
+   * @param  {classInstance} class object
+   */
+  updateClass: function(action) {
+    AppDispatcher.handleViewAction({
+      actionType: 'updateClass',
+      classID: action.classID,
+      classInstance: action.classInstance
+    });
+  },
 
 };
 
