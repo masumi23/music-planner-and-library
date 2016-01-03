@@ -3,16 +3,6 @@ var AppDispatcher = require('../dispatcher/AppDispatcher');
 var Actions = {
 
   /**
-   * @param  {obj} song data
-   */
-  doop: function(num) {
-    AppDispatcher.handleViewAction({
-      actionType: 'doop',
-      num: num
-    });
-  },
-
-  /**
    * @param  {obj} action {id, song}
    */
   updateSong: function(action) {

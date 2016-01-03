@@ -56,14 +56,7 @@ function makeStore(app) {
       console.log('payload', payload);
       var action = payload.action;
       var text;
-
       switch(action.actionType) {
-        case 'doop':
-          console.log(action.num);
-          app.setState({foo: action.num});
-          app.Store.emitChange();
-          break;
-
         case 'updateSong':
           let songList = app.state.songList.slice();
           console.log(songList === app.state.songList);
@@ -96,8 +89,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      songList: [],
-      foo: 0
+      songList: []
     };
   }
 
@@ -119,12 +111,6 @@ export default class App extends React.Component {
       context: this,
       state: 'foo'
     });
-
-    // sonar ping
-    // setInterval(function(){
-    //   console.log('sending...');
-    //   Actions.doop(Math.random());
-    // }, 2000);
 
   }
 

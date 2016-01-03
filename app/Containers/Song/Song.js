@@ -42,16 +42,11 @@ export default class Song extends React.Component {
   saveSongData() {
     console.debug('Saving song data!', this.state.currentSong);
     // this.props.updateSong(this.state.currentSong);
-    console.log(this.props);
+    console.log(this.state.currentSong);
     Actions.updateSong({
       id: this.props.currentSongArrayID,
       song: this.state.currentSong
     });
-
-    // AppDispatcher.dispatch({
-    //   eventName: 'updateSong',
-    //   song: this.state.currentSong
-    // });
 
     this.toggleEditMode();
   }
