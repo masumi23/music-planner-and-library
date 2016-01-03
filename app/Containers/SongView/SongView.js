@@ -13,28 +13,25 @@ export default class SongView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentSong: null,
+      songID: -1,
       sort: false,
       filters: []
     };
   }
 
   componentWillReceiveProps(newProps) {
-    console.log(newProps);
     let currentSongID = newProps.params.songID;
-    let currentSongArrayID;
+    let songID;
     let currentSong = _.find(this.props.songList, function(song, i){
         if ((song.id+'') === currentSongID) {
-          currentSongArrayID = i;
+          songID = i;
           return true;
         }
       }.bind(this));
 
     // TODO: implement flux
     this.setState({
-      currentSongID,
-      currentSongArrayID,
-      currentSong
+      songID
     });
   }
 
@@ -44,7 +41,9 @@ export default class SongView extends React.Component {
     // this.setState({currentSong: updatedSong});
 
     // clone list and update current song in list
-    let i = _.findIndex(this.props.songList, this.state.currentSong);
+    let i = this.state.songID;
+
+    //_.findIndex(this.props.songList, this.state.currentSong);
     let diff = {};
     diff[i] = {$merge: updatedSong};
 
@@ -94,7 +93,9 @@ export default class SongView extends React.Component {
       return false;
     }
 
-    let i = _.findIndex(this.props.songList, this.state.currentSong);
+    let i = this.state.songID;
+
+    //_.findIndex(this.props.songList, this.state.currentSong);
     let newList = React.addons.update(this.props.songList, {
       $splice: [[i,1]]
     });
@@ -136,9 +137,8 @@ export default class SongView extends React.Component {
           addSong={this.addSong.bind(this)}/>
 
         <Song
-          songID={this.props.params.songID}
-          currentSong={this.state.currentSong}
-          currentSongArrayID={this.state.currentSongArrayID}
+          songList={this.props.songList}
+          songID={this.state.songID}
           updateSong={this.updateCurrentSong.bind(this)}
           deleteCurrentSong={this.deleteCurrentSong.bind(this)}
           closeCurrentSong={this.closeCurrentSong.bind(this)}/>

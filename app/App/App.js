@@ -65,12 +65,12 @@ function makeStore(app) {
           break;
 
         case 'updateSong':
-          var songList = app.state.songList.slice();
-          songList[payload.action.id] = payload.action.song;
+          let songList = app.state.songList.slice();
+          console.log(songList === app.state.songList);
+          songList[action.id] = action.song;
 
           app.setState({ songList: songList });
           console.log('---');
-          console.log(songList[payload.action.id]);
           app.Store.emitChange();
           break;
 
@@ -134,7 +134,6 @@ export default class App extends React.Component {
   }
 
   render() {
-    window.foo = this.state;
     return (
       <div className={styles.app}>
         <GlobalNav className={styles.globalNav}/>
@@ -147,6 +146,8 @@ export default class App extends React.Component {
   }
 
   _onChange() {
-    this.setState(this.Store.getAll());
+    console.log('hi');
+    this.setState(this.state);
+    // this.setState(this.Store.getAll());
   }
 }

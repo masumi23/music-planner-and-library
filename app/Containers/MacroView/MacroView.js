@@ -20,11 +20,11 @@ export default class MacroView extends React.Component {
   }
 
   componentDidMount() {
-    this.fbRef = this.base.syncState('history/courses', {
-      context: this,
-      state: 'courses',
-      asArray: true
-    });
+    // this.fbRef = this.base.syncState('history/courses', {
+    //   context: this,
+    //   state: 'courses',
+    //   asArray: true
+    // });
   }
 
   componentWillUnmount(){

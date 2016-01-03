@@ -26,11 +26,11 @@ export default class TagView extends React.Component {
   }
 
   componentDidMount() {
-    this.fbRef = this.base.syncState('songList', {
-      context: this,
-      state: 'items',
-      asArray: true
-    });
+    // this.fbRef = this.base.syncState('songList', {
+    //   context: this,
+    //   state: 'items',
+    //   asArray: true
+    // });
   }
 
   componentWillUnmount(){

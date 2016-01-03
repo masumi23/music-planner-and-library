@@ -24,6 +24,8 @@ export default class Score extends React.Component {
   }
 
   _renderScore() {
+    if (!window.ABCJS) return;
+
     let startTime = Date.now();
 
     let domNode = ReactDOM.findDOMNode(this.refs.score);

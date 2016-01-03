@@ -20,11 +20,11 @@ export default class CourseView extends React.Component {
 
   componentDidMount() {
     console.log('componentDidMount...');
-    this.fbRef = this.base.syncState('history/courses', {
-      context: this,
-      state: 'items',
-      asArray: true
-    });
+    // this.fbRef = this.base.syncState('history/courses', {
+    //   context: this,
+    //   state: 'items',
+    //   asArray: true
+    // });
   }
 
   componentWillUnmount(){
