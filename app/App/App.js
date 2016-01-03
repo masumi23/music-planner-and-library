@@ -58,7 +58,7 @@ function makeStore(app) {
       var text;
       switch(action.actionType) {
         case 'updateSong':
-          app.base.post(`songList/${action.id}`, {
+          app.base.post(`songs/${action.id}`, {
             data: action.song
           });
           break;
@@ -105,8 +105,28 @@ export default class App extends React.Component {
         this.setState({ songList });
       }
     };
-    this.base.listenTo('songList', songListConfig);
-    this.base.fetch('songList', songListConfig);
+    this.base.listenTo('songs', songListConfig);
+    this.base.fetch('songs', songListConfig);
+
+    let coursesConfig = {
+      context: this,
+      asArray: true,
+      then(courses) {
+        this.setState({ courses });
+      }
+    };
+    this.base.listenTo('courses', coursesConfig);
+    this.base.fetch('courses', coursesConfig);
+
+    let classesConfig = {
+      context: this,
+      asArray: true,
+      then(classes) {
+        this.setState({ classes });
+      }
+    };
+    this.base.listenTo('classes', classesConfig);
+    this.base.fetch('classes', classesConfig);
 
   }
 
