@@ -85,7 +85,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      songList: []
+      songs: []
     };
   }
 
@@ -98,15 +98,15 @@ export default class App extends React.Component {
     // connect the state to Firebase using re-base
     this.base = Rebase.createClass('https://songdatabase.firebaseio.com/');
 
-    let songListConfig = {
+    let songsConfig = {
       context: this,
       asArray: true,
-      then(songList) {
-        this.setState({ songList });
+      then(songs) {
+        this.setState({ songs });
       }
     };
-    this.base.listenTo('songs', songListConfig);
-    this.base.fetch('songs', songListConfig);
+    this.base.listenTo('songs', songsConfig);
+    this.base.fetch('songs', songsConfig);
 
     let coursesConfig = {
       context: this,

@@ -19,7 +19,7 @@ export default class Song extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    let currentSong = newProps.songList[newProps.songID];
+    let currentSong = newProps.songs[newProps.songID];
     console.log('getting new song ', currentSong);
     this.setState({currentSong: currentSong});
   }
@@ -35,7 +35,7 @@ export default class Song extends React.Component {
 
   cancelEdit() {
     console.debug('Edit cancelled');
-    this.setState({currentSong: this.props.songList[this.props.songID]});
+    this.setState({currentSong: this.props.songs[this.props.songID]});
     this.toggleEditMode();
   }
 
@@ -86,7 +86,7 @@ export default class Song extends React.Component {
     }
 
     return (
-      <div className={styles.song + (this.props.songList[this.props.songID] ? ' ' + styles['song-active'] : '')}>
+      <div className={styles.song + (this.props.songs[this.props.songID] ? ' ' + styles['song-active'] : '')}>
         <h1 className="heading">
           {self.makeContentEditable.call(self, 'title')}
         </h1>
