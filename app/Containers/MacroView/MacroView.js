@@ -15,22 +15,6 @@ export default class MacroView extends React.Component {
     };
   }
 
-  componentWillMount() {
-    this.base = Rebase.createClass('https://songdatabase.firebaseio.com/');
-  }
-
-  componentDidMount() {
-    // this.fbRef = this.base.syncState('history/courses', {
-    //   context: this,
-    //   state: 'courses',
-    //   asArray: true
-    // });
-  }
-
-  componentWillUnmount(){
-    this.base.removeBinding(this.fbRef);
-  }
-
   render () {
     let courses = this.state.courses;
     if (!courses) return null;

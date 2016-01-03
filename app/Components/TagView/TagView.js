@@ -10,7 +10,7 @@ import React from 'react';
 import Firebase from 'firebase';
 import Rebase from 're-base';
 import _ from 'lodash';
-import TagView from '../TagView/TagView.js'
+import TagView from '../TagView/TagView.js';
 
 export default class TagView extends React.Component {
   constructor(props) {
@@ -21,26 +21,9 @@ export default class TagView extends React.Component {
     };
   }
 
-  componentWillMount() {
-    this.base = Rebase.createClass('https://songdatabase.firebaseio.com/');
-  }
-
-  componentDidMount() {
-    // this.fbRef = this.base.syncState('songList', {
-    //   context: this,
-    //   state: 'items',
-    //   asArray: true
-    // });
-  }
-
-  componentWillUnmount(){
-    this.base.removeBinding(this.fbRef);
-  }
 
   componentWillReceiveProps(newProps) {
     console.log(newProps);
-
-    });
   }
 
   makeTagList() {

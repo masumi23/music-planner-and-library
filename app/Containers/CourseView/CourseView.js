@@ -13,24 +13,6 @@ export default class CourseView extends React.Component {
     };
   }
 
-  componentWillMount() {
-    console.log('componentWillMount');
-    this.base = Rebase.createClass('https://songdatabase.firebaseio.com');
-  }
-
-  componentDidMount() {
-    console.log('componentDidMount...');
-    // this.fbRef = this.base.syncState('history/courses', {
-    //   context: this,
-    //   state: 'items',
-    //   asArray: true
-    // });
-  }
-
-  componentWillUnmount(){
-    this.base.removeBinding(this.fbRef);
-  }
-//will this work??
   componentWillReceiveProps(newProps) {
     console.log('componentWillReceiveProps');
     console.log(newProps);
