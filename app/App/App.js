@@ -58,13 +58,9 @@ function makeStore(app) {
       var text;
       switch(action.actionType) {
         case 'updateSong':
-          let songList = app.state.songList.slice();
-          console.log(songList === app.state.songList);
-          songList[action.id] = action.song;
-
-          app.setState({ songList: songList });
-          console.log('---');
-          app.Store.emitChange();
+          app.base.post(`songList/${action.id}`, {
+            data: action.song
+          });
           break;
 
         case 'addSong':
@@ -101,16 +97,16 @@ export default class App extends React.Component {
 
     // connect the state to Firebase using re-base
     this.base = Rebase.createClass('https://songdatabase.firebaseio.com/');
-    this.fbRef = this.base.syncState('songList', {
-      context: this,
-      state: 'songList',
-      asArray: true
-    });
 
-    this.fbRef = this.base.syncState('foo', {
+    let songListConfig = {
       context: this,
-      state: 'foo'
-    });
+      asArray: true,
+      then(songList) {
+        this.setState({ songList });
+      }
+    };
+    this.base.listenTo('songList', songListConfig);
+    this.base.fetch('songList', songListConfig);
 
   }
 

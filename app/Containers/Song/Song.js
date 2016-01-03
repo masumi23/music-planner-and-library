@@ -44,7 +44,7 @@ export default class Song extends React.Component {
     // this.props.updateSong(this.state.currentSong);
     console.log(this.state.currentSong);
     Actions.updateSong({
-      id: this.props.currentSongArrayID,
+      id: this.props.songID,
       song: this.state.currentSong
     });
 
